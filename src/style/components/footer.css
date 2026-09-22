@@ -1,0 +1,192 @@
+/* Reset Dasar & Font */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: #11141a;
+  min-height: 100-screen;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Spacer untuk mendorong footer ke bawah halaman */
+.content-spacer {
+  flex: 1;
+}
+
+/* Footer Wrapper */
+.main-footer {
+  background-color: #1e222b;
+  color: #9ca3af;
+  padding: 48px 24px;
+  border-top: 1px solid #2d3139;
+  position: relative;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Tata Letak Grid Bagian Atas */
+.footer-top {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid #2d3139;
+}
+
+/* Pengaturan Kolom */
+.links-col {
+  grid-column: span 2;
+}
+
+.newsletter-col {
+  grid-column: span 6;
+}
+
+.column-title {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* Menu Navigasi */
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  color: #9ca3af;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+/* Area Form Newsletter */
+.newsletter-desc {
+  font-size: 14px;
+  margin-bottom: 16px;
+  color: #9ca3af;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 8px;
+  max-width: 450px;
+}
+
+.newsletter-input {
+  flex: 1;
+  background-color: #161a22;
+  color: #ffffff;
+  border: 1px solid #374151;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 14px;
+  outline: none;
+}
+
+.newsletter-input::placeholder {
+  color: #4b5563;
+}
+
+.newsletter-input:focus {
+  border-color: #0066fe;
+}
+
+.newsletter-btn {
+  background-color: #0066fe;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.newsletter-btn:hover {
+  background-color: #0056d6;
+}
+
+/* Bagian Bawah Footer */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  font-size: 14px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 16px;
+}
+
+.social-icons a {
+  color: #9ca3af;
+  font-size: 20px;
+  transition: color 0.2s ease;
+}
+
+.social-icons a:hover {
+  color: #ffffff;
+}
+
+/* Widget Mengambang (Pojok Kanan Bawah) */
+.floating-widget {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  background-color: #7a22ff;
+  color: #ffffff;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s ease;
+}
+
+.floating-widget:hover {
+  background-color: #671cd9;
+}
+
+/* Responsif untuk Layar Tablet dan HP */
+@media (max-width: 768px) {
+  .links-col {
+    grid-column: span 4;
+  }
+  .newsletter-col {
+    grid-column: span 12;
+    margin-top: 16px;
+  }
+  .newsletter-form {
+    flex-direction: column;
+    max-width: 100%;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+}
