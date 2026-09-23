@@ -1,4 +1,4 @@
-navbar = document.getElementById("navbar");
+const navbar = document.getElementById("navbar");
 
 navbar.innerHTML = `
 
