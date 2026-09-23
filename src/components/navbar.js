@@ -8,7 +8,7 @@ navbar.innerHTML = `
   <header class="navbar">
     <div class="container nav-wrap">
       <!-- Logo SparkSave -->
-      <a href="#hero" class="brand-logo">
+      <a href="/index.html" class="brand-logo">
         <div class="brand-icon">
           <!-- Petir/Energi SVG -->
           <svg viewBox="0 0 24 24">
@@ -21,10 +21,10 @@ navbar.innerHTML = `
       <!-- Menu Navigasi -->
       <nav>
         <ul class="nav-links mt-3">
-          <li><a href="#hero" class="nav-link">Beranda</a></li>
+          <li><a href="/index.html" class="nav-link">Beranda</a></li>
           <li><a href="#" onclick="alert('Halaman sedang dalam proses pengembangan')" class="nav-link">Mengapa Penting</a></li>
           <li><a href="#" onclick="alert('Halaman sedang dalam proses pengembangan')" class="nav-link">Solusi & Aksi</a></li>
-          <li><a href="#tentang" class="nav-link">Tentang</a></li>
+          <li><a href="/src/page/about.html" class="nav-link">Tentang</a></li>
         </ul>
       </nav>
 

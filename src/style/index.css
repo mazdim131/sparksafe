@@ -160,7 +160,7 @@ body {
   font-weight: 700;
   border-radius: var(--radius-full);
   text-decoration: none;
-  box-shadow: 0 6px 18px rgba(243, 156, 18, 0.35);
+  /* box-shadow: 0 6px 18px rgba(243, 156, 18, 0.35); */
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
