@@ -1,17 +1,4 @@
-/* Reset Dasar & Font */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-}
-
-body {
-  background-color: #11141a;
-  min-height: 100-screen;
-  display: flex;
-  flex-direction: column;
-}
+/* Footer Styles */
 
 /* Spacer untuk mendorong footer ke bawah halaman */
 .content-spacer {

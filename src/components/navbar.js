@@ -1,4 +1,4 @@
-navbar = document.getElementById("navbar");
+const navbar = document.getElementById("navbar");
 
 navbar.innerHTML = `
     <nav class="navbar navbar-expand-lg p-3 rounded-4" style="background-color: #059669 !important;">
