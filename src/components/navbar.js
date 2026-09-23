@@ -21,10 +21,10 @@ navbar.innerHTML = `
       <!-- Menu Navigasi -->
       <nav>
         <ul class="nav-links">
-          <li><a href="#hero" class="nav-link">Beranda</a></li>
+          <li><a href="index.html" class="nav-link">Beranda</a></li>
           <li><a href="#mengapa-penting" class="nav-link">Mengapa Penting</a></li>
           <li><a href="#solusi" class="nav-link">Solusi & Aksi</a></li>
-          <li><a href="#tentang" class="nav-link">Tentang</a></li>
+          <li><a href="../src/page/about.html" class="nav-link">Tentang</a></li>
         </ul>
       </nav>
 
