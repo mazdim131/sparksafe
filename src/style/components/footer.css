@@ -1,179 +1,170 @@
-/* Footer Styles */
-
-/* Spacer untuk mendorong footer ke bawah halaman */
-.content-spacer {
-  flex: 1;
+.mega-footer {
+  background-color: #0f172a;
+  color: #cbd5e1;
+  padding: 5rem 0 2rem;
+  margin-top: auto;
+  border-top: 4px solid var(--primary);
 }
 
-/* Footer Wrapper */
-.main-footer {
-  background-color: #1e222b;
-  color: #9ca3af;
-  padding: 48px 24px;
-  border-top: 1px solid #2d3139;
-  position: relative;
-}
-
-.footer-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Tata Letak Grid Bagian Atas */
 .footer-top {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 32px;
-  padding-bottom: 32px;
-  border-bottom: 1px solid #2d3139;
+  grid-template-columns: 1.3fr 0.9fr 1.1fr;
+  gap: 4rem;
+  margin-bottom: 3.5rem;
 }
 
-/* Pengaturan Kolom */
-.links-col {
-  grid-column: span 2;
+/* Kolom 1: Tentang SparkSave */
+.footer-col-about {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
-.newsletter-col {
-  grid-column: span 6;
-}
-
-.column-title {
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.4rem;
+  font-weight: 800;
   color: #ffffff;
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-
-/* Menu Navigasi */
-.footer-links {
-  list-style: none;
-}
-
-.footer-links li {
-  margin-bottom: 8px;
-}
-
-.footer-links a {
-  color: #9ca3af;
   text-decoration: none;
-  font-size: 14px;
-  transition: color 0.2s ease;
 }
 
-.footer-links a:hover {
-  color: #ffffff;
-}
-
-/* Area Form Newsletter */
-.newsletter-desc {
-  font-size: 14px;
-  margin-bottom: 16px;
-  color: #9ca3af;
-}
-
-.newsletter-form {
+.footer-brand-icon {
+  width: 32px;
+  height: 32px;
+  background-color: var(--primary);
+  border-radius: var(--radius-sm);
   display: flex;
-  gap: 8px;
-  max-width: 450px;
-}
-
-.newsletter-input {
-  flex: 1;
-  background-color: #161a22;
-  color: #ffffff;
-  border: 1px solid #374151;
-  border-radius: 4px;
-  padding: 8px 12px;
-  font-size: 14px;
-  outline: none;
-}
-
-.newsletter-input::placeholder {
-  color: #4b5563;
-}
-
-.newsletter-input:focus {
-  border-color: #0066fe;
-}
-
-.newsletter-btn {
-  background-color: #0066fe;
-  color: #ffffff;
-  border: none;
-  border-radius: 4px;
-  padding: 8px 20px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.newsletter-btn:hover {
-  background-color: #0056d6;
-}
-
-/* Bagian Bawah Footer */
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding-top: 24px;
-  font-size: 14px;
-}
-
-.social-icons {
-  display: flex;
-  gap: 16px;
-}
-
-.social-icons a {
-  color: #9ca3af;
-  font-size: 20px;
-  transition: color 0.2s ease;
-}
-
-.social-icons a:hover {
-  color: #ffffff;
-}
-
-/* Widget Mengambang (Pojok Kanan Bawah) */
-.floating-widget {
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
-  background-color: #7a22ff;
-  color: #ffffff;
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  display: flex;
   justify-content: center;
+}
+
+.footer-brand-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--accent);
+}
+
+.footer-desc {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #94a3b8;
+}
+
+.footer-badge-pill {
+  display: inline-flex;
   align-items: center;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: background-color 0.2s ease;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  color: #e2e8f0;
+  align-self: flex-start;
 }
 
-.floating-widget:hover {
-  background-color: #671cd9;
+.footer-badge-pill span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--secondary);
 }
 
-/* Responsif untuk Layar Tablet dan HP */
-@media (max-width: 768px) {
-  .links-col {
-    grid-column: span 4;
-  }
-  .newsletter-col {
-    grid-column: span 12;
-    margin-top: 16px;
-  }
-  .newsletter-form {
-    flex-direction: column;
-    max-width: 100%;
-  }
-  .footer-bottom {
-    flex-direction: column;
-    gap: 16px;
-    text-align: center;
-  }
+/* Kolom 2: Tautan Cepat */
+.footer-col-links h4,
+.footer-col-contact h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.footer-col-links h4::after,
+.footer-col-contact h4::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background-color: var(--primary);
+}
+
+.quick-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.quick-links a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: var(--transition);
+}
+
+.quick-links a:hover {
+  color: var(--secondary);
+  transform: translateX(4px);
+}
+
+/* Kolom 3: Kontak & Alamat */
+.contact-info {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  font-size: 0.92rem;
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+.contact-icon {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  margin-top: 2px;
+}
+
+.contact-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--accent);
+}
+
+.contact-item strong {
+  color: #ffffff;
+  display: block;
+  margin-bottom: 0.15rem;
+}
+
+/* Bottom Footer (Copyright) */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.75rem;
+  text-align: center;
+}
+
+.copyright-text {
+  font-size: 0.88rem;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.copyright-text strong {
+  color: #cbd5e1;
 }
