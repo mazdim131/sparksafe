@@ -2,41 +2,30 @@ const navbar = document.getElementById("navbar");
 
 navbar.innerHTML = `
 
- <!-- =========================================================
-       1. Header & Navbar (Sticky)
-       ========================================================= -->
-  <header class="navbar">
-    <div class="container nav-wrap">
-      <!-- Logo SparkSave -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-sm container-fluid">
       <a href="/index.html" class="brand-logo">
-        <div class="brand-icon">
-          <!-- Petir/Energi SVG -->
-          <svg viewBox="0 0 24 24">
-            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-          </svg>
+        <div>
+          <img src="/src/assets/images/ic-navbar.png" style="height: 40px;">
         </div>
         <span>SparkSave</span>
       </a>
-
-      <!-- Menu Navigasi -->
-      <nav>
-        <ul class="nav-links mt-3">
-          <li><a href="/index.html" class="nav-link">Beranda</a></li>
-          <li><a href="#" onclick="alert('Halaman sedang dalam proses pengembangan')" class="nav-link">Mengapa Penting</a></li>
-          <li><a href="#" onclick="alert('Halaman sedang dalam proses pengembangan')" class="nav-link">Solusi & Aksi</a></li>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-links justify-content-center mx-auto ">
+          <li><a href="/index.html#hero" class="nav-link">Beranda</a></li>
+          <li><a href="/index.html#mengapa-penting" class="nav-link">Mengapa Penting</a></li>
+          <li><a href="/index.html#solusi" class="nav-link">Solusi & Aksi</a></li>
           <li><a href="/src/page/about.html" class="nav-link">Tentang</a></li>
         </ul>
-      </nav>
-
-      <!-- Action Button -->
-      <div class="nav-actions">
-        <a href="#solusi" class="btn-join">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-          </svg>
+      <form class="d-flex" role="search">
+        <a href="#solusi" class="btn-join justify-content-center mx-auto">
           <span>Join Kampanye</span>
-        </a>
-      </div>
+        </a> 
     </div>
-  </header>
+  </div>
+</nav>
+
 `;

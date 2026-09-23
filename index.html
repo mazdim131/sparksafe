@@ -4,12 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SparkSave — Kampanye Hemat Energi & Lindungi Bumi</title>
+    <title>SparkSave | Beranda</title>
+    <link rel="shortcut icon" href="/src/assets/images/favicon.png" type="image/x-icon">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Poppins:wght@400;500;600;700;800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Poppins:wght@400;500;600;700;800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 
     <!-- Bootstrap 5 & Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
@@ -64,46 +67,14 @@
 
                 </div>
 
-                <!-- Sisi Kanan: Visual CSS & Floating Stat Cards -->
                 <div class="hero-right">
-                    <!-- Floating Card 1 (Atas Kanan) -->
 
-                    <!-- Central Visual Board -->
-                    <!-- <div class="visual-board">
-                        <div class="board-header">
-                            <div class="board-title-group">
-                                <h4>Indeks Efisiensi Energi</h4>
-                                <p>Status Kampanye SparkSave</p>
-                            </div>
-                            <span class="board-status">Aktif Berjalan</span>
-                        </div>
-
-                        <div class="energy-meter">
-                            <div class="meter-ring">
-                                <div class="meter-inner">
-                                    <span class="percent">86%</span> 
-                                    <span class="caption">Efisiensi</span>
-                                </div>
-                            </div>
-                            <p class="meter-desc">
-                                Peningkatan kedisiplinan pencabutan colokan dan pemadaman komputer lab setelah jam
-                                pembelajaran selesai.
-                            </p>
-                        </div>
-                    </div> -->
-
-                    <img src="/src/assets/images/hero.png" style="height: 450px;" alt="">
-
-
-                    <!-- Floating Card 2 (Bawah Kiri) -->
+                    <img src="/src/assets/images/hero.png" class="img-hero" style="height: 450px;" alt="">
 
                 </div>
             </div>
         </section>
 
-        <!-- =========================================================
-         3. Artikel Latar Belakang (Mendalam & Diperbanyak)
-         ========================================================= -->
         <section id="mengapa-penting" class="article-section">
             <div class="container">
                 <div class="section-head">
@@ -112,7 +83,6 @@
                 </div>
 
                 <div class="article-layout">
-                    <!-- 3 Paragraf Artikel Mendalam -->
                     <article class="article-content">
                         <p class="lead-text">
                             Dunia saat ini sedang menghadapi ancaman <strong>krisis iklim global</strong> paling intens
@@ -123,16 +93,16 @@
 
                         <p>
                             Di balik kenyamanan listrik yang kita nikmati setiap detik, mayoritas pasokan energi
-                            nasional masih sangat bertumpu pada <strong>pembangkit listrik tenaga uap (PLTU) berbahan
-                                bakar batu bara dan minyak fosil</strong>. Pembakaran bahan bakar fosil ini secara masif
+                            nasional masih sangat bertumpu pada pembangkit listrik tenaga uap (PLTU) berbahan
+                            bakar batu bara dan minyak fosil. Pembakaran bahan bakar fosil ini secara masif
                             melepas jutaan ton gas karbon dioksida (CO₂) ke atmosfer setiap tahunnya. Ketergantungan
                             terhadap energi tak terbarukan ini tidak hanya mempercepat efek rumah kaca dan pemanasan
                             global, tetapi juga menguras cadangan sumber daya alam tak terbarukan yang kelak harus
                             diwariskan ke generasi berikutnya.
                         </p>
 
-                        <p>
-                            Realitas ironis justru kerap terjadi di lingkungan pendidikan tempat kita beraktivitas
+                        <!-- <p>
+                            Realita ironis justru kerap terjadi di lingkungan pendidikan tempat kita beraktivitas
                             setiap hari. Banyak dari kita yang tanpa sadar melakukan <strong>pemborosan listrik ekstrem
                                 di ruang kelas dan laboratorium</strong>. Perangkat komputer lab dibiarkan menyala dalam
                             mode standby semalaman tanpa dimatikan tuntas, kabel charger laptop dibiarkan tertancap di
@@ -141,17 +111,13 @@
                             yang kosong saat jam istirahat. Jika kebiasaan ini dibiarkan, institusi pendidikan yang
                             seharusnya menjadi teladan keberlanjutan justru menyumbang jejak karbon yang sangat
                             merugikan lingkungan.
-                        </p>
+                        </p> -->
                     </article>
 
-                    <!-- Sidebar Fakta & Insight -->
                     <aside class="article-sidebar">
                         <div class="fact-box highlight">
                             <div class="fact-header warning">
-                                <svg viewBox="0 0 24 24">
-                                    <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
-                                </svg>
-                                <h4>Bahaya Beban Vampir Listrik</h4>
+                                <h4 class="mt-2">Bahaya Beban Listrik</h4>
                             </div>
                             <p>
                                 Adaptor charger dan perangkat elektronik yang tetap terhubung ke stopkontak terus
@@ -162,14 +128,10 @@
 
                         <div class="fact-box">
                             <div class="fact-header success">
-                                <svg viewBox="0 0 24 24">
-                                    <path
-                                        d="M12 2a10 10 0 100 20 10 10 0 000-20zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                                </svg>
                                 <h4>Efisiensi Suhu Ideal AC</h4>
                             </div>
                             <p>
-                                Menaikkan suhu AC kelas dari 18°C ke suhu ideal 24°C-25°C dapat menghemat konsumsi
+                                Menaikkan suhu AC ruangan dari 18°C ke suhu ideal 24°C-25°C dapat menghemat konsumsi
                                 energi kompresor hingga 18-24%, sekaligus menjaga sirkulasi udara ruang belajar tetap
                                 sejuk dan menyehatkan.
                             </p>
@@ -179,9 +141,6 @@
             </div>
         </section>
 
-        <!-- =========================================================
-         4. Section Solusi & Aksi (Grid Cards)
-         ========================================================= -->
         <section id="solusi" class="solutions-section">
             <div class="container">
                 <div class="section-head">
@@ -192,7 +151,6 @@
                 <div class="solutions-grid">
                     <!-- Kartu 1 -->
                     <div class="action-card">
-                        <span class="card-num">01</span>
                         <div class="action-icon">
                             <svg viewBox="0 0 24 24">
                                 <path
@@ -204,12 +162,10 @@
                             Jangan biarkan adaptor charger laptop atau gawai menggantung di stopkontak saat baterai
                             telah penuh. Cabut colokan segera untuk menghentikan aliran listrik yang terbuang percuma.
                         </p>
-                        <span class="card-tag">Eliminasi Phantom Load</span>
                     </div>
 
                     <!-- Kartu 2 -->
                     <div class="action-card">
-                        <span class="card-num">02</span>
                         <div class="action-icon">
                             <svg viewBox="0 0 24 24">
                                 <path
@@ -221,12 +177,10 @@
                             Gunakan pengaturan suhu optimal 24°C - 25°C. Selalu pastikan AC dimatikan ketika siswa
                             berpindah ruangan untuk praktikum, upacara, istirahat, atau pulang sekolah.
                         </p>
-                        <span class="card-tag">Hemat Beban Pendingin</span>
                     </div>
 
                     <!-- Kartu 3 -->
                     <div class="action-card">
-                        <span class="card-num">03</span>
                         <div class="action-icon">
                             <svg viewBox="0 0 24 24">
                                 <path
@@ -238,12 +192,10 @@
                             Terapkan SOP tegas di lab komputer: lakukan proses shutdown komputer dan matikan tombol
                             power monitor setelah praktikum pemrograman selesai.
                         </p>
-                        <span class="card-tag">Standar Operasional Lab</span>
                     </div>
 
                     <!-- Kartu 4 -->
                     <div class="action-card">
-                        <span class="card-num">04</span>
                         <div class="action-icon">
                             <svg viewBox="0 0 24 24">
                                 <path
@@ -255,7 +207,6 @@
                             Buka gorden dan jendela kelas saat cuaca cerah. Manfaatkan penerangan alami matahari
                             sehingga lampu ruangan tidak perlu dinyalakan secara serentak.
                         </p>
-                        <span class="card-tag">Maksimalkan Sinar Surya</span>
                     </div>
                 </div>
 

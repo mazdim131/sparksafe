@@ -6,144 +6,80 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-body {
-  background-color: #11141a;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.footer-card {
+  border-radius: 40px;
+  background-color: var(--bg-sidebar);
+  color: var(--color-teks) !important;
+}
+.footer-card h6 {
+  margin-bottom: 20px;
 }
 
-/* Spacer untuk mendorong footer ke bawah halaman */
-.content-spacer {
-  flex: 1;
+.footer-card ul li {
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-align: center;
 }
 
-/* Footer Wrapper */
-.main-footer {
-  background-color: #1e222b;
-  color: #9ca3af;
-  padding: 48px 24px;
-  border-top: 1px solid #2d3139;
-  position: relative;
+.footer-card .text-secondary,
+.footer-card .text-muted {
+  color: var(--color-teks-sub) !important;
 }
 
-.footer-container {
-  max-width: 1200px;
-  margin: 0 auto;
+.mb-2:hover {
+  transform: translateY(-5px);
+  transition: 0.3s ease-in-out;
 }
 
-/* Tata Letak Bagian Atas - Menggunakan Flexbox agar 4 Kolom Sejajar Sempurna */
-.footer-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 32px;
-  padding-bottom: 32px;
-  border-bottom: 1px solid #2d3139;
+@media (max-width: 1920px) {
+  .footer-card.p-5 {
+    padding: 4rem !important;
+  }
 }
 
-/* Pengaturan Ukuran 3 Kolom Navigasi Kiri */
-.links-col {
-  flex: 1;
-  min-width: 160px;
+@media (max-width: 1366px) {
+  .footer-card.p-5 {
+    padding: 3rem !important;
+  }
 }
 
-/* Pengaturan Ukuran Kolom ke-4 (SparkSave Paling Kanan) */
-.newsletter-col {
-  flex: 1.5;
-  min-width: 220px;
+@media (max-width: 1280px) {
+  .footer-card.p-5 {
+    padding: 2.75rem !important;
+  }
 }
 
-.column-title {
-  color: #ffffff;
-  text-decoration: none;
+@media (max-width: 1183px) {
+  .footer-card.p-5 {
+    padding: 2.5rem !important;
+  }
 }
 
-.footer-links a:hover {
-  color: #ffffff;
-}
-
-/* Deskripsi Teks di Kolom Ke-4 */
-.newsletter-desc {
-  font-size: 14px;
-  margin-bottom: 12px;
-  color: #9ca3af;
-  line-height: 1.5;
-}
-
-/* Mengatur agar Susunan Ikon Sosmed Berjejer Rapi ke Samping */
-.social-icons {
-  display: flex;
-  gap: 16px;
-  margin-top: 12px;
-}
-
-.social-icon-link, .github-icon-link {
-  color: #9ca3af;
-  display: inline-flex;
-  align-items: center;
-  transition: color 0.2s ease;
-}
-
-.social-icon-link:hover, .github-icon-link:hover {
-  color: #ffffff;
-}
-
-/* Bagian Bawah Footer (Copyright) */
-.footer-bottom {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.quick-links a {
-  color: #94a3b8;
-  text-decoration: none;
-  font-size: 0.95rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  transition: var(--transition);
-}
-
-.quick-links a:hover {
-  color: var(--secondary);
-  transform: translateX(4px);
-}
-
-/* Kolom 3: Kontak & Alamat */
-.contact-info {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-/* Widget Mengambang (Pojok Kanan Bawah) */
-.floating-widget {
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
-  background-color: #7a22ff;
-  color: #ffffff;
-  display: block;
-  margin-bottom: 0.15rem;
-}
-
-/* Responsif untuk Layar HP Otomatis Menumpuk Vertikal Agar Rapi */
 @media (max-width: 768px) {
-  .footer-top {
-    flex-direction: column;
-    gap: 24px;
+  .footer-card.p-5 {
+    padding: 2rem !important;
   }
-  
-  .links-col, .newsletter-col {
-    width: 100%;
+
+  .footer-card h3 {
+    font-size: 28px !important;
   }
-  
-  .footer-bottom {
+
+  .footer-card .row {
     text-align: center;
-    justify-content: center;
+  }
+
+  .footer-card ul,
+  .footer-card .col-lg-2 {
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-card.p-5 {
+    padding: 1.5rem !important;
+  }
+
+  .footer-card h3 {
+    font-size: 26px !important;
   }
 }
