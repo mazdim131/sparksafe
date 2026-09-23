@@ -47,9 +47,7 @@ footer.innerHTML = `
         </div>
         </div>
       </div>
-      <div class="footer-bottom">
         <p class="copyright">&copy; 2026 SparkSave. All rights reserved.</p>
-      </div>
 
 
     </div>
