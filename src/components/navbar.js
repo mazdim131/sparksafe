@@ -20,10 +20,10 @@ navbar.innerHTML = `
 
       <!-- Menu Navigasi -->
       <nav>
-        <ul class="nav-links">
+        <ul class="nav-links mt-3">
           <li><a href="#hero" class="nav-link">Beranda</a></li>
-          <li><a href="#mengapa-penting" class="nav-link">Mengapa Penting</a></li>
-          <li><a href="#solusi" class="nav-link">Solusi & Aksi</a></li>
+          <li><a href="#" onclick="alert('Halaman sedang dalam proses pengembangan')" class="nav-link">Mengapa Penting</a></li>
+          <li><a href="#" onclick="alert('Halaman sedang dalam proses pengembangan')" class="nav-link">Solusi & Aksi</a></li>
           <li><a href="#tentang" class="nav-link">Tentang</a></li>
         </ul>
       </nav>

@@ -22,21 +22,19 @@
     <link rel="stylesheet" href="/src/style/global.css">
     <link rel="stylesheet" href="/src/style/index.css">
     <link rel="stylesheet" href="/src/style/components/footer.css">
+    <link rel="stylesheet" href="/src/style/components/navbar.css">
 </head>
 
 <body>
     <header id="navbar"></header>
 
     <main>
-        <!-- =========================================================
-         2. Hero Section (Split Layout)
-         ========================================================= -->
         <section id="hero" class="hero">
             <div class="container hero-grid">
                 <!-- Sisi Kiri: Konten Teks & Tombol CTA -->
                 <div class="hero-left">
                     <div class="hero-badge">
-                        <span class="hero-badge-pulse"></span>
+                        <span class="text-warning"><i class="bi bi-exclamation-circle-fill"></i></span>
                         <span>Gerakan Penghematan Listrik Sekolah</span>
                     </div>
 
@@ -52,13 +50,13 @@
                     </p>
 
                     <div class="hero-cta-group">
-                        <a href="#solusi" class="btn-solid">
+                        <a href="#" onclick="alert('Halaman sedang dalam proses pengembangan')" class="btn-solid">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
                             </svg>
                             <span>Mulai Hemat</span>
                         </a>
-                        <a href="#mengapa-penting" class="btn-outline">
+                        <a href="#" onclick="alert('Halaman sedang dalam tahap pengembangan')" class="btn-outline">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                                 <path
                                     d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
@@ -111,11 +109,7 @@
                         </div>
                     </div> -->
 
-<<<<<<< HEAD
-                    <img src="/src/assets/images/hero.png" alt="">
-=======
                     <img src="/src/assets/images/hero.png" style="height: 450px;" alt="">
->>>>>>> 2893bdb950adf6e3078d41b20d22d9d9cc390c80
 
 
                     <!-- Floating Card 2 (Bawah Kiri) -->
@@ -302,6 +296,19 @@
     <!-- component -->
     <script src="/src/components/navbar.js"></script>
     <script src="/src/components/footer.js"></script>
+
+    <script>
+        const link = document.getElementById('pageConstruction')
+        const toastTrigger = document.getElementById('liveToastBtn')
+        const toastLiveExample = document.getElementById('liveToast')
+
+        if (link) {
+            const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+            toastTrigger.addEventListener('click', () => {
+                toastBootstrap.show()
+            })
+        }
+    </script>
 
 
     <!-- bootstrap -->
