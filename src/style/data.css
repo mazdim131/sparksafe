@@ -1,58 +1,91 @@
+/* ============================================================
+   SparkSave - Halaman Data & Fakta
+   Gaya Tata Letak Kartu Grafik 1 Baris Penuh (Full Width Rows)
+   ============================================================ */
+
 /* KPI Cards */
 .kpi-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.25rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
 .kpi-card {
     background-color: #ffffff;
     border: 1px solid var(--border-light);
     border-radius: var(--radius-md);
-    padding: 1.25rem 1.5rem;
+    padding: 1.5rem 1.25rem;
     box-shadow: var(--shadow-sm);
     text-align: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.kpi-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(5, 150, 105, 0.08);
+    border-color: #a7f3d0;
 }
 
 .kpi-value {
-    font-size: 1.9rem;
+    font-size: 2.1rem;
     font-weight: 800;
     color: var(--primary);
     line-height: 1.1;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
 }
 
 .kpi-label {
-    font-size: 0.82rem;
+    font-size: 0.84rem;
     color: var(--text-muted);
-    line-height: 1.4;
+    line-height: 1.45;
 }
 
+/* Filter Dropdown */
 .filter-row {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-    margin-bottom: 0.75rem;
+    gap: 0.65rem;
+    background-color: var(--bg-light);
+    padding: 0.4rem 0.75rem;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
 }
 
 .filter-label {
     font-size: 0.85rem;
     font-weight: 600;
-    color: var(--text-dark);
+    color: var(--text-body);
     margin: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.filter-label i {
+    color: var(--primary);
 }
 
 .filter-select {
-    padding: 0.35rem 0.75rem;
+    padding: 0.4rem 0.85rem;
     border: 1px solid var(--border-light);
-    border-radius: var(--radius-sm);
+    border-radius: 6px;
     font-size: 0.85rem;
+    font-weight: 500;
     background-color: #ffffff;
     color: var(--text-dark);
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Data & Fakta page */
+.filter-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15);
+}
+
+/* Data & Fakta Page Header */
 .data-hero {
     padding: 4.5rem 0 3rem;
     background:
@@ -83,7 +116,7 @@
 }
 
 .data-section {
-    padding: 4rem 0 5rem;
+    padding: 3.5rem 0 5rem;
     background-color: #ffffff;
 }
 
@@ -99,41 +132,176 @@
     color: #dc2626;
 }
 
+/* ============================================================
+   Chart Grid: 1 Kartu per 1 Baris Penuh Memanjang ke Kanan
+   ============================================================ */
 .chart-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.75rem;
-    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+    width: 100%;
 }
 
 .chart-card {
     background-color: #ffffff;
     border: 1px solid var(--border-light);
     border-radius: var(--radius-md);
-    padding: 1.5rem;
-    box-shadow: var(--shadow-sm);
+    padding: 2rem 2.25rem;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.chart-card:hover {
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.07);
+    border-color: #cbd5e1;
+}
+
+/* Chart Header */
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.chart-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--primary);
+    background-color: var(--primary-light);
+    padding: 0.28rem 0.7rem;
+    border-radius: var(--radius-full);
+    margin-bottom: 0.5rem;
+    border: 1px solid #d1fae5;
+}
+
+.chart-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.3px;
+}
+
+.chart-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+/* Doughnut Chart 2-Column Split Layout */
+.doughnut-body {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.doughnut-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.kategori-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+}
+
+.kategori-stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: var(--bg-light);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 1rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.kategori-stat-item:hover {
+    transform: translateY(-1px);
+    border-color: #cbd5e1;
+}
+
+.stat-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.stat-sangatbaik .stat-dot { background-color: #059669; }
+.stat-baik .stat-dot { background-color: #10b981; }
+.stat-cukup .stat-dot { background-color: #f39c12; }
+.stat-kurang .stat-dot { background-color: #ef4444; }
+
+.stat-text {
     display: flex;
     flex-direction: column;
 }
 
-.chart-title {
-    font-size: 1.15rem;
+.stat-name {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.stat-val {
+    font-size: 0.95rem;
     font-weight: 700;
     color: var(--text-dark);
-    margin-bottom: 0.25rem;
 }
 
-.chart-subtitle {
-    font-size: 0.85rem;
+.stat-val small {
+    font-weight: 500;
+    font-size: 0.8rem;
     color: var(--text-muted);
-    margin-bottom: 1rem;
 }
 
+.doughnut-canvas-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Canvas Wrappers */
 .chart-canvas-wrap {
     position: relative;
     width: 100%;
-    height: 260px;
-    margin-bottom: 1rem;
+    height: 280px;
+}
+
+.chart-canvas-wrap.chart-canvas-doughnut {
+    height: 310px;
+    max-width: 380px;
+}
+
+.chart-canvas-wrap.chart-canvas-lg {
+    height: 420px;
+}
+
+.chart-canvas-wrap.chart-canvas-md {
+    height: 320px;
+}
+
+.chart-canvas-wrap.chart-canvas-filter {
+    height: 370px;
 }
 
 .chart-canvas-wrap canvas {
@@ -141,43 +309,95 @@
     height: 100% !important;
 }
 
+/* Insight Box Callout */
 .chart-insight {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    background-color: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-left: 4px solid var(--primary);
+    border-radius: var(--radius-sm);
+    padding: 0.95rem 1.25rem;
     font-size: 0.9rem;
-    color: var(--text-body);
+    color: #166534;
     line-height: 1.6;
-    margin-top: auto;
-    padding-top: 0.75rem;
-    border-top: 1px solid var(--border-light);
+    margin-top: 1.5rem;
 }
 
+.chart-insight i {
+    color: var(--primary);
+    font-size: 1.25rem;
+    line-height: 1;
+    margin-top: 0.15rem;
+    flex-shrink: 0;
+}
+
+.chart-insight-content {
+    flex: 1;
+}
+
+.chart-insight-content strong {
+    color: #065f46;
+    font-weight: 700;
+}
+
+/* ============================================================
+   Media Queries Responsive
+   ============================================================ */
 @media (max-width: 1024px) {
-    .chart-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
     .kpi-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .doughnut-body {
+        grid-template-columns: 1fr;
+        gap: 1.75rem;
+    }
+
+    .chart-canvas-wrap.chart-canvas-doughnut {
+        max-width: 340px;
+        height: 290px;
     }
 }
 
 @media (max-width: 768px) {
-    .kpi-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .data-hero {
+        padding: 3rem 0 2rem;
     }
-    .filter-row {
-        flex-wrap: wrap;
-    }
-}
 
-@media (max-width: 768px) {
     .data-title {
         font-size: 1.9rem;
     }
 
-    .chart-grid {
+    .chart-card {
+        padding: 1.25rem;
+    }
+
+    .chart-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .filter-row {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .kategori-stats-grid {
         grid-template-columns: 1fr;
     }
 
-    .chart-canvas-wrap {
-        height: 240px;
+    .chart-canvas-wrap.chart-canvas-lg {
+        height: 380px;
+    }
+
+    .chart-canvas-wrap.chart-canvas-md {
+        height: 280px;
+    }
+
+    .chart-canvas-wrap.chart-canvas-filter {
+        height: 320px;
     }
 }

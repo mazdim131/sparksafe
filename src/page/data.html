@@ -70,64 +70,126 @@
 
                 <div class="chart-grid">
                     <!-- Grafik 1 -->
-                    <div class="chart-card">
-                        <h3 class="chart-title">Proporsi Kategori Perilaku Siswa</h3>
-                        <p class="chart-subtitle">Sebaran tingkat perilaku hemat energi (636 siswa)</p>
-                        <div class="chart-canvas-wrap">
-                            <canvas id="chart-kategori"></canvas>
+                    <div class="chart-card chart-card-doughnut">
+                        <div class="chart-header">
+                            <div>
+                                <span class="chart-badge"><i class="bi bi-pie-chart-fill"></i> Distribusi Perilaku</span>
+                                <h3 class="chart-title">Proporsi Kategori Perilaku Siswa</h3>
+                                <p class="chart-subtitle">Sebaran tingkat perilaku hemat energi siswa kelas XI (636 responden)</p>
+                            </div>
                         </div>
-                        <p class="chart-insight">
-                            Mayoritas siswa kelas XI (96,2%) sudah berada di kategori Baik dan Sangat Baik, namun masih
-                            ada 3,8% (24 siswa) yang perlu diajak berubah agar sekolah kita 100% hemat energi.
-                        </p>
+                        <div class="doughnut-body">
+                            <div class="doughnut-info">
+                                <div class="kategori-stats-grid">
+                                    <div class="kategori-stat-item stat-sangatbaik">
+                                        <span class="stat-dot"></span>
+                                        <div class="stat-text">
+                                            <span class="stat-name">Sangat Baik</span>
+                                            <span class="stat-val" id="stat-val-sangatbaik">59,4% <small>(378 siswa)</small></span>
+                                        </div>
+                                    </div>
+                                    <div class="kategori-stat-item stat-baik">
+                                        <span class="stat-dot"></span>
+                                        <div class="stat-text">
+                                            <span class="stat-name">Baik</span>
+                                            <span class="stat-val" id="stat-val-baik">36,8% <small>(234 siswa)</small></span>
+                                        </div>
+                                    </div>
+                                    <div class="kategori-stat-item stat-cukup">
+                                        <span class="stat-dot"></span>
+                                        <div class="stat-text">
+                                            <span class="stat-name">Cukup</span>
+                                            <span class="stat-val" id="stat-val-cukup">3,6% <small>(23 siswa)</small></span>
+                                        </div>
+                                    </div>
+                                    <div class="kategori-stat-item stat-kurang">
+                                        <span class="stat-dot"></span>
+                                        <div class="stat-text">
+                                            <span class="stat-name">Kurang</span>
+                                            <span class="stat-val" id="stat-val-kurang">0,2% <small>(1 siswa)</small></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="chart-insight">
+                                    <i class="bi bi-lightbulb-fill"></i>
+                                    <div class="chart-insight-content">
+                                        <strong>Insight Utama:</strong> Mayoritas siswa kelas XI (96,2%) sudah berada di kategori Baik dan Sangat Baik, namun masih ada 3,8% (24 siswa) yang perlu diajak berubah agar sekolah kita 100% hemat energi.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doughnut-canvas-wrap">
+                                <div class="chart-canvas-wrap chart-canvas-doughnut">
+                                    <canvas id="chart-kategori"></canvas>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Grafik 2 -->
                     <div class="chart-card">
-                        <h3 class="chart-title">Kebiasaan Tertinggi vs yang Masih Lemah</h3>
-                        <p class="chart-subtitle">Rata-rata skor per butir (P01–P10), diurutkan</p>
-                        <div class="chart-canvas-wrap">
+                        <div class="chart-header">
+                            <div>
+                                <span class="chart-badge"><i class="bi bi-bar-chart-steps"></i> Evaluasi Butir P01–P10</span>
+                                <h3 class="chart-title">Kebiasaan Tertinggi vs yang Masih Lemah</h3>
+                                <p class="chart-subtitle">Rata-rata skor per butir pernyataan (skala 1,00 - 4,00), diurutkan dari skor tertinggi ke terendah</p>
+                            </div>
+                        </div>
+                        <div class="chart-canvas-wrap chart-canvas-lg">
                             <canvas id="chart-butir"></canvas>
                         </div>
-                        <p class="chart-insight">
-                            Meski 98,6% siswa sadar menghemat energi (P01), kebiasaan membatasi penggunaan laptop/gawai
-                            (P04) dan keberanian menegur teman yang boros listrik (P09) masih menjadi titik terlemah
-                            (lebih dari 13% siswa masih jarang melakukannya).
-                        </p>
+                        <div class="chart-insight">
+                            <i class="bi bi-lightbulb-fill"></i>
+                            <div class="chart-insight-content">
+                                <strong>Insight Utama:</strong> Meski 98,6% siswa sadar menghemat energi (P01), kebiasaan membatasi penggunaan laptop/gawai (P04) dan keberanian menegur teman yang boros listrik (P09) masih menjadi titik terlemah (lebih dari 13% siswa masih jarang melakukannya).
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Grafik 3 -->
                     <div class="chart-card">
-                        <h3 class="chart-title">Perbandingan Rata-Rata Skor Antar Jurusan</h3>
-                        <p class="chart-subtitle">Rata-rata skor perilaku per jurusan</p>
-                        <div class="chart-canvas-wrap">
+                        <div class="chart-header">
+                            <div>
+                                <span class="chart-badge"><i class="bi bi-diagram-3-fill"></i> Komparasi Jurusan</span>
+                                <h3 class="chart-title">Perbandingan Rata-Rata Skor Antar Jurusan</h3>
+                                <p class="chart-subtitle">Rata-rata skor perilaku hemat energi per program keahlian siswa kelas XI</p>
+                            </div>
+                        </div>
+                        <div class="chart-canvas-wrap chart-canvas-md">
                             <canvas id="chart-jurusan"></canvas>
                         </div>
-                        <p class="chart-insight">
-                            Jurusan Pemasaran (PMN) memimpin dengan skor 3,51, sementara jurusan berbasis komputer
-                            seperti PPLG (3,24) masih memiliki tantangan besar karena tingginya intensitas penggunaan
-                            perangkat elektronik setiap hari.
-                        </p>
+                        <div class="chart-insight">
+                            <i class="bi bi-lightbulb-fill"></i>
+                            <div class="chart-insight-content">
+                                <strong>Insight Utama:</strong> Jurusan Pemasaran (PMN) memimpin dengan skor 3,51, sementara jurusan berbasis komputer seperti PPLG (3,24) masih memiliki tantangan besar karena tingginya intensitas penggunaan perangkat elektronik setiap hari.
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Grafik 4 -->
                     <div class="chart-card">
-                        <h3 class="chart-title">Eksplorasi Data per Rayon / Rombel</h3>
-                        <p class="chart-subtitle">Rata-rata skor per kelompok</p>
-                        <div class="filter-row">
-                            <label for="filter-view" class="filter-label">Tampilan:</label>
-                            <select id="filter-view" class="filter-select">
-                                <option value="rayon">Per Rayon (7 Rayon)</option>
-                                <option value="rombel">Per Rombel (18 Kelas)</option>
-                            </select>
+                        <div class="chart-header">
+                            <div>
+                                <span class="chart-badge"><i class="bi bi-sliders"></i> Eksplorasi Kelompok</span>
+                                <h3 class="chart-title">Eksplorasi Data per Rayon / Rombel</h3>
+                                <p class="chart-subtitle">Peringkat rata-rata skor perilaku hemat energi berdasarkan pembagian kelompok</p>
+                            </div>
+                            <div class="filter-row">
+                                <label for="filter-view" class="filter-label"><i class="bi bi-funnel-fill"></i> Tampilan:</label>
+                                <select id="filter-view" class="filter-select">
+                                    <option value="rayon">Per Rayon (7 Rayon)</option>
+                                    <option value="rombel">Per Rombel (18 Kelas)</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="chart-canvas-wrap">
+                        <div class="chart-canvas-wrap chart-canvas-filter">
                             <canvas id="chart-filter"></canvas>
                         </div>
-                        <p class="chart-insight">
-                            Lihat posisi kelas atau rayon masing-masing untuk menumbuhkan semangat kompetisi positif
-                            dalam menghemat listrik di sekolah.
-                        </p>
+                        <div class="chart-insight">
+                            <i class="bi bi-lightbulb-fill"></i>
+                            <div class="chart-insight-content">
+                                <strong>Insight Utama:</strong> Lihat posisi kelas atau rayon masing-masing untuk menumbuhkan semangat kompetisi positif dalam membiasakan hemat energi di lingkungan sekolah.
+                            </div>
+                        </div>
                     </div>
                 </div>
 
