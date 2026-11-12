@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SparkSave | Data & Fakta</title>
+    <link rel="shortcut icon" href="/src/assets/images/favicon.png" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Poppins:wght@400;500;600;700;800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap 5 & Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../style/global.css">
+    <link rel="stylesheet" href="../style/index.css">
+    <link rel="stylesheet" href="../style/data.css">
+    <link rel="stylesheet" href="../style/components/footer.css">
+    <link rel="stylesheet" href="../style/components/navbar.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <header id="navbar"></header>
+
+    <main>
+        <section class="data-hero text-center">
+            <div class="container">
+                <span class="section-tag">Bukti Nyata di Sekolah</span>
+                <h1 class="data-title">Data & <span>Fakta</span> Hemat Energi</h1>
+                <p class="data-subtext">
+                    Angka-angka berikut merupakan hasil kuesioner perilaku hemat energi siswa kelas XI (636 responden).
+                    Bukan sekadar teori — ini kondisi sesungguhnya yang kita hadapi setiap hari.
+                </p>
+            </div>
+        </section>
+
+        <section class="data-section">
+            <div class="container">
+                <!-- KPI Cards -->
+                <div class="kpi-grid" id="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-value" id="kpi-responden">-</div>
+                        <div class="kpi-label">Responden (Partisipasi 99,4% siswa Kelas XI)</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-value" id="kpi-skor">-</div>
+                        <div class="kpi-label">Rata-rata skor perilaku hemat energi (skala 4,00)</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-value" id="kpi-sering">-</div>
+                        <div class="kpi-label">Siswa yang rutin melakukan kebiasaan hemat energi</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-value" id="kpi-sangatbaik">-</div>
+                        <div class="kpi-label">Masuk kategori Sangat Baik</div>
+                    </div>
+                </div>
+
+                <div id="chart-status" class="chart-status" role="status" aria-live="polite"></div>
+
+                <div class="chart-grid">
+                    <!-- Grafik 1 -->
+                    <div class="chart-card">
+                        <h3 class="chart-title">Proporsi Kategori Perilaku Siswa</h3>
+                        <p class="chart-subtitle">Sebaran tingkat perilaku hemat energi (636 siswa)</p>
+                        <div class="chart-canvas-wrap">
+                            <canvas id="chart-kategori"></canvas>
+                        </div>
+                        <p class="chart-insight">
+                            Mayoritas siswa kelas XI (96,2%) sudah berada di kategori Baik dan Sangat Baik, namun masih
+                            ada 3,8% (24 siswa) yang perlu diajak berubah agar sekolah kita 100% hemat energi.
+                        </p>
+                    </div>
+
+                    <!-- Grafik 2 -->
+                    <div class="chart-card">
+                        <h3 class="chart-title">Kebiasaan Tertinggi vs yang Masih Lemah</h3>
+                        <p class="chart-subtitle">Rata-rata skor per butir (P01–P10), diurutkan</p>
+                        <div class="chart-canvas-wrap">
+                            <canvas id="chart-butir"></canvas>
+                        </div>
+                        <p class="chart-insight">
+                            Meski 98,6% siswa sadar menghemat energi (P01), kebiasaan membatasi penggunaan laptop/gawai
+                            (P04) dan keberanian menegur teman yang boros listrik (P09) masih menjadi titik terlemah
+                            (lebih dari 13% siswa masih jarang melakukannya).
+                        </p>
+                    </div>
+
+                    <!-- Grafik 3 -->
+                    <div class="chart-card">
+                        <h3 class="chart-title">Perbandingan Rata-Rata Skor Antar Jurusan</h3>
+                        <p class="chart-subtitle">Rata-rata skor perilaku per jurusan</p>
+                        <div class="chart-canvas-wrap">
+                            <canvas id="chart-jurusan"></canvas>
+                        </div>
+                        <p class="chart-insight">
+                            Jurusan Pemasaran (PMN) memimpin dengan skor 3,51, sementara jurusan berbasis komputer
+                            seperti PPLG (3,24) masih memiliki tantangan besar karena tingginya intensitas penggunaan
+                            perangkat elektronik setiap hari.
+                        </p>
+                    </div>
+
+                    <!-- Grafik 4 -->
+                    <div class="chart-card">
+                        <h3 class="chart-title">Eksplorasi Data per Rayon / Rombel</h3>
+                        <p class="chart-subtitle">Rata-rata skor per kelompok</p>
+                        <div class="filter-row">
+                            <label for="filter-view" class="filter-label">Tampilan:</label>
+                            <select id="filter-view" class="filter-select">
+                                <option value="rayon">Per Rayon (7 Rayon)</option>
+                                <option value="rombel">Per Rombel (18 Kelas)</option>
+                            </select>
+                        </div>
+                        <div class="chart-canvas-wrap">
+                            <canvas id="chart-filter"></canvas>
+                        </div>
+                        <p class="chart-insight">
+                            Lihat posisi kelas atau rayon masing-masing untuk menumbuhkan semangat kompetisi positif
+                            dalam menghemat listrik di sekolah.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="cta-strip">
+                    <div class="cta-strip-text">
+                        <h3>Siap Mengambil Bagian dalam Gerakan Ini?</h3>
+                        <p>
+                            Data sudah berbicara: kebiasaan membatasi gawai/laptop (P04), berani mengingatkan teman
+                            (P09), dan memilih transportasi hemat energi (P05) masih menjadi titik terlemah. Kini
+                            giliran kita bertindak menuju langkah aksi nyata.
+                        </p>
+                    </div>
+                    <a href="index.html#solusi" class="btn-cta-strip">Lihat Langkah Aksi</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer"></footer>
+
+    <!-- Data (fallback JS) -->
+    <script src="../js/data-perilaku-energi.js"></script>
+
+    <!-- JS Components -->
+    <script src="../components/navbar.js"></script>
+    <script src="../components/footer.js"></script>
+
+    <!-- Chart logic -->
+    <script src="../js/data-chart.js"></script>
+
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

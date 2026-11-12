@@ -35,6 +35,7 @@ footer.innerHTML = `
           <h6 class="fw-bold text-center">Navigasi Cepat</h6>
           <ul class="list-unstyled text-muted">
             <li class="mb-2"><a href="/index.html#hero" class="text-secondary text-decoration-none">Beranda</a></a></li>
+            <li class="mb-2"><a href="/src/page/data.html" class="text-secondary text-decoration-none">Data & Fakta</a></li>
             <li class="mb-2"><a href="/src/page/about.html" class="text-secondary text-decoration-none">Tentang</a></li>
           </ul>
         </div>

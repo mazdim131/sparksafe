@@ -15,10 +15,11 @@ navbar.innerHTML = `
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-links justify-content-center mx-auto ">
-          <li><a href="/index.html#hero" class="nav-link">Beranda</a></li>
-          <li><a href="/index.html#mengapa-penting" class="nav-link">Mengapa Penting</a></li>
-          <li><a href="/index.html#solusi" class="nav-link">Solusi & Aksi</a></li>
-          <li><a href="/src/page/about.html" class="nav-link">Tentang</a></li>
+          <li><a href="/index.html#hero" class="nav-link" data-nav="home">Beranda</a></li>
+          <li><a href="/index.html#mengapa-penting" class="nav-link" data-nav="why">Mengapa Penting</a></li>
+          <li><a href="/index.html#solusi" class="nav-link" data-nav="solution">Solusi & Aksi</a></li>
+          <li><a href="/src/page/data.html" class="nav-link" data-nav="data">Data & Fakta</a></li>
+          <li><a href="/src/page/about.html" class="nav-link" data-nav="about">Tentang</a></li>
         </ul>
       <form class="d-flex" role="search">
         <a href="#solusi" class="btn-join justify-content-center mx-auto">
@@ -29,3 +30,15 @@ navbar.innerHTML = `
 </nav>
 
 `;
+
+// Tandai menu aktif berdasarkan halaman yang sedang dibuka
+(function markActiveNav() {
+  const path = (window.location.pathname || "").toLowerCase();
+  let key = "home";
+  if (path.endsWith("data.html")) key = "data";
+  else if (path.endsWith("about.html")) key = "about";
+  const links = document.querySelectorAll(".nav-link[data-nav]");
+  links.forEach((l) => {
+    if (l.getAttribute("data-nav") === key) l.classList.add("active");
+  });
+})();
