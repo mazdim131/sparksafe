@@ -1,4 +1,3 @@
-// Data & Fakta - Chart rendering (Fase 2) - data asli kuesioner
 (function () {
   "use strict";
 
@@ -68,7 +67,7 @@
       };
       setStat("stat-val-sangatbaik", r.kategori_persen["Sangat Baik"] || 0, r.kategori["Sangat Baik"] || 0);
       setStat("stat-val-baik", r.kategori_persen["Baik"] || 0, r.kategori["Baik"] || 0);
-      setStat("stat-val-cukup", r.kategori_persen["Cukup"] || 0, r.kategori["Cukup"] || 0);
+      setStat("stat-val-cukup", r.kategori_persen["C   ukup"] || 0, r.kategori["Cukup"] || 0);
       setStat("stat-val-kurang", r.kategori_persen["Kurang"] || 0, r.kategori["Kurang"] || 0);
     }
   }
@@ -86,7 +85,6 @@
       type: "doughnut",
       data: {
         labels: labels,
-<<<<<<< HEAD
         datasets: [
           {
             data: values,
@@ -97,33 +95,14 @@
             borderColor: "#ffffff",
           },
         ],
-=======
-        datasets: [{
-          data: values,
-          backgroundColor: labels.map((l) => KATEGORI_COLORS[l] || PALETTE.muted),
-          borderWidth: 3,
-          borderColor: "#ffffff",
-          hoverOffset: 6
-        }]
->>>>>>> e73ccc7768401568155c30f6aff32c5a35193053
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-<<<<<<< HEAD
           legend: {
             position: "bottom",
             labels: { boxWidth: 14, padding: 12, font: { size: 11 } },
-=======
-          legend: { 
-            position: "bottom", 
-            labels: { 
-              boxWidth: 14, 
-              padding: 14, 
-              font: { size: 12, family: "'Google Sans', sans-serif" } 
-            } 
->>>>>>> e73ccc7768401568155c30f6aff32c5a35193053
           },
           tooltip: {
             callbacks: {
@@ -137,26 +116,16 @@
             },
           },
         },
-<<<<<<< HEAD
         cutout: "60%",
       },
-=======
-        cutout: "62%"
-      }
->>>>>>> e73ccc7768401568155c30f6aff32c5a35193053
     });
   }
 
   function makeButirChart(data) {
-<<<<<<< HEAD
     const items = (data.per_butir || [])
       .slice()
       .sort((a, b) => b.rata_rata - a.rata_rata);
     const labels = items.map((i) => i.kode + " " + i.label);
-=======
-    const items = (data.per_butir || []).slice().sort((a, b) => b.rata_rata - a.rata_rata);
-    const labels = items.map((i) => i.kode + " - " + i.label);
->>>>>>> e73ccc7768401568155c30f6aff32c5a35193053
     const values = items.map((i) => i.rata_rata);
     const colors = items.map((i) =>
       i.rata_rata >= 3.4
@@ -172,7 +141,6 @@
       type: "bar",
       data: {
         labels: labels,
-<<<<<<< HEAD
         datasets: [
           {
             label: "Rata-rata",
@@ -182,16 +150,6 @@
             borderSkipped: false,
           },
         ],
-=======
-        datasets: [{
-          label: "Rata-rata skor",
-          data: values,
-          backgroundColor: colors,
-          borderRadius: 6,
-          borderSkipped: false,
-          maxBarThickness: 22
-        }]
->>>>>>> e73ccc7768401568155c30f6aff32c5a35193053
       },
       options: {
         indexAxis: "y",
@@ -199,7 +157,6 @@
         maintainAspectRatio: false,
         plugins: {
           legend: { display: false },
-<<<<<<< HEAD
           tooltip: {
             callbacks: { label: (c) => "Rata-rata: " + c.parsed.x.toFixed(2) },
           },
@@ -208,36 +165,14 @@
           x: { min: 3.0, max: 3.6, ticks: { stepSize: 0.1 } },
         },
       },
-=======
-          tooltip: { callbacks: { label: (c) => "Rata-rata: " + c.parsed.x.toFixed(2) + " / 4,00" } }
-        },
-        scales: {
-          x: { 
-            min: 3.0, 
-            max: 3.6, 
-            ticks: { stepSize: 0.1, font: { family: "'Google Sans', sans-serif" } },
-            grid: { color: "rgba(0, 0, 0, 0.05)" }
-          },
-          y: {
-            ticks: { font: { size: 11, family: "'Google Sans', sans-serif" } },
-            grid: { display: false }
-          }
-        }
-      }
->>>>>>> e73ccc7768401568155c30f6aff32c5a35193053
     });
   }
 
   function makeJurusanChart(data) {
-<<<<<<< HEAD
     const items = (data.per_jurusan || [])
       .slice()
       .sort((a, b) => b.rata_rata_skor - a.rata_rata_skor);
     const labels = items.map((i) => i.kode);
-=======
-    const items = (data.per_jurusan || []).slice().sort((a, b) => b.rata_rata_skor - a.rata_rata_skor);
-    const labels = items.map((i) => i.kode + " (" + i.nama + ")");
->>>>>>> e73ccc7768401568155c30f6aff32c5a35193053
     const values = items.map((i) => i.rata_rata_skor);
     const ctx = document.getElementById("chart-jurusan");
     if (!ctx) return;
@@ -246,7 +181,6 @@
       type: "bar",
       data: {
         labels: labels,
-<<<<<<< HEAD
         datasets: [
           {
             label: "Rata-rata skor",
@@ -256,16 +190,6 @@
             borderSkipped: false,
           },
         ],
-=======
-        datasets: [{
-          label: "Rata-rata skor",
-          data: values,
-          backgroundColor: PALETTE.primary,
-          borderRadius: 8,
-          borderSkipped: false,
-          maxBarThickness: 56
-        }]
->>>>>>> e73ccc7768401568155c30f6aff32c5a35193053
       },
       options: {
         responsive: true,
@@ -276,7 +200,6 @@
             callbacks: {
               label: (c) => {
                 const it = items[c.dataIndex];
-<<<<<<< HEAD
                 return (
                   it.nama +
                   ": " +
@@ -293,26 +216,6 @@
           y: { min: 2.8, max: 3.7, ticks: { stepSize: 0.1 } },
         },
       },
-=======
-                return "Skor: " + c.parsed.y.toFixed(2) + " (" + it.jumlah_responden + " siswa)";
-              }
-            }
-          }
-        },
-        scales: {
-          y: { 
-            min: 2.8, 
-            max: 3.7, 
-            ticks: { stepSize: 0.1, font: { family: "'Google Sans', sans-serif" } },
-            grid: { color: "rgba(0, 0, 0, 0.05)" }
-          },
-          x: {
-            ticks: { font: { size: 12, family: "'Google Sans', sans-serif" } },
-            grid: { display: false }
-          }
-        }
-      }
->>>>>>> e73ccc7768401568155c30f6aff32c5a35193053
     });
   }
 
@@ -340,7 +243,6 @@
       type: "bar",
       data: {
         labels: labels,
-<<<<<<< HEAD
         datasets: [
           {
             label: "Rata-rata skor",
@@ -350,23 +252,12 @@
             borderSkipped: false,
           },
         ],
-=======
-        datasets: [{
-          label: "Rata-rata skor",
-          data: values,
-          backgroundColor: mode === "rombel" ? PALETTE.secondary : PALETTE.primary,
-          borderRadius: 6,
-          borderSkipped: false,
-          maxBarThickness: mode === "rombel" ? 42 : 54
-        }]
->>>>>>> e73ccc7768401568155c30f6aff32c5a35193053
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
           legend: { display: false },
-<<<<<<< HEAD
           tooltip: { callbacks: { label: (c) => c.parsed.y.toFixed(2) } },
         },
         scales: {
@@ -376,34 +267,6 @@
           },
         },
       },
-=======
-          tooltip: { 
-            callbacks: { 
-              label: (c) => {
-                const it = items[c.dataIndex];
-                return "Rata-rata skor: " + c.parsed.y.toFixed(2) + (it.jumlah_responden ? " (" + it.jumlah_responden + " siswa)" : "");
-              }
-            } 
-          }
-        },
-        scales: {
-          y: { 
-            min: 2.8, 
-            max: 3.7, 
-            ticks: { stepSize: 0.1, font: { family: "'Google Sans', sans-serif" } },
-            grid: { color: "rgba(0, 0, 0, 0.05)" }
-          },
-          x: { 
-            ticks: { 
-              font: { size: mode === "rombel" ? 11 : 12, family: "'Google Sans', sans-serif" }, 
-              maxRotation: 45, 
-              minRotation: mode === "rombel" ? 35 : 0 
-            },
-            grid: { display: false }
-          }
-        }
-      }
->>>>>>> e73ccc7768401568155c30f6aff32c5a35193053
     });
   }
 
