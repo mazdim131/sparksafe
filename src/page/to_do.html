@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SparkSave | Zona Evaluasi Diri</title>
+    <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Poppins:wght@400;500;600;700;800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap 5 & Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../style/global.css">
+    <link rel="stylesheet" href="../style/index.css">
+    <link rel="stylesheet" href="../style/todo.css">
+    <link rel="stylesheet" href="../style/components/footer.css">
+    <link rel="stylesheet" href="../style/components/navbar.css">
+</head>
+
+<body>
+    <header id="navbar"></header>
+
+    <main>
+        <section class="todo-hero text-center">
+            <div class="container">
+                <span class="section-tag">Zona Evaluasi Diri</span>
+                <h1 class="todo-title">Jurnal <span>7 Hari</span> Hemat Energi</h1>
+                <p class="todo-subtext">
+                    Tantangan kecil selama 7 hari untuk membangun kebiasaan hemat energi di kelas dan laboratorium.
+                    Centang setiap aksi yang sudah kamu lakukan. Progresmu tersimpan otomatis di browser.
+                </p>
+            </div>
+        </section>
+
+        <section class="todo-section">
+            <div class="container">
+                <!-- Progress Card -->
+                <div class="progress-card">
+                    <div class="progress-head">
+                        <h3>Progresmu</h3>
+                        <span id="progress-text">0 / 0 selesai</span>
+                    </div>
+                    <div class="progress-bar-wrap">
+                        <div class="progress-bar-fill" id="progress-bar"></div>
+                    </div>
+                    <p class="progress-percent" id="progress-percent">0%</p>
+                    <button id="reset-btn" class="btn-reset">
+                        <i class="bi bi-arrow-counterclockwise"></i> Reset Progres
+                    </button>
+                </div>
+
+                <!-- Daftar 7 Hari -->
+                <div id="days-container" class="days-grid"></div>
+
+                <!-- CTA -->
+                <div class="cta-strip">
+                    <div class="cta-strip-text">
+                        <h3>Sudah Siap Naik Level?</h3>
+                        <p>
+                            Setelah menyelesaikan jurnal 7 hari, uji pemahamanmu di game Eco Detective atau lihat data
+                            & fakta riset hemat energi.
+                        </p>
+                    </div>
+                    <div class="d-flex flex-wrap gap-2 justify-content-center">
+                        <a href="Eco_Detective_Operation_Green_Campus_v3.html" class="btn-cta-strip">
+                            <i class="bi bi-controller me-2"></i>Mainkan Eco Detective
+                        </a>
+                        <a href="data.html" class="btn-cta-strip"
+                            style="background:#ffffff; color:var(--primary); border:2px solid #ffffff;">
+                            Lihat Data & Fakta
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer"></footer>
+
+    <!-- JS Jurnal -->
+    <script src="../js/todo.js"></script>
+
+    <!-- JS Components -->
+    <script src="../components/navbar.js"></script>
+    <script src="../components/footer.js"></script>
+
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
