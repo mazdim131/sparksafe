@@ -1,5 +1,5 @@
 .navbar {
-  position: sticky;
+  position: fixed;
   top: 0;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.95);
@@ -36,7 +36,6 @@
   align-items: center;
   justify-content: center;
   color: #fff;
-  /* box-shadow: 0 4px 10px rgba(5, 150, 105, 0.25); */
 }
 
 .brand-icon svg {
