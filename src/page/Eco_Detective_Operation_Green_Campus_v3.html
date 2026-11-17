@@ -1,0 +1,2395 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SparkSave | Eco Detective: Operation Green Campus</title>
+  <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Poppins:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+  <style>
+    :root {
+      --primary: #059669;
+      --primary-dark: #047857;
+      --primary-light: #ecfdf5;
+      --secondary: #10b981;
+      --accent: #f39c12;
+      --accent-hover: #e67e22;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --info: #38bdf8;
+      
+      --bg-dark: #081712;
+      --bg-card: #0e261f;
+      --bg-card-alt: #13332a;
+      --border: rgba(16, 185, 129, 0.22);
+      --border-focus: #10b981;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --font-main: "Google Sans", "Poppins", -apple-system, sans-serif;
+      --font-mono: "Roboto Mono", monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background: radial-gradient(ellipse at 50% -10%, #0d382c 0%, transparent 60%),
+                  linear-gradient(160deg, #071510 0%, #0a1f18 50%, #0d2820 100%);
+      color: var(--text);
+      font-family: var(--font-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    .wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 16px 20px 40px;
+    }
+
+    /* TOP BAR & BRAND */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 18px;
+      background: rgba(14, 38, 31, 0.85);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      backdrop-filter: blur(12px);
+      margin-bottom: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 22px;
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+      text-decoration: none;
+    }
+
+    .brand-text h1 {
+      font-size: clamp(1.1rem, 2.5vw, 1.45rem);
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      color: #ffffff;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-text small {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--secondary);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .top-nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      color: #ffffff;
+      padding: 8px 14px;
+      border-radius: 99px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .btn-nav:hover {
+      background: var(--primary);
+      border-color: var(--secondary);
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(5, 150, 105, 0.4);
+    }
+
+    .btn-nav.home-btn {
+      background: linear-gradient(135deg, rgba(5, 150, 105, 0.25), rgba(16, 185, 129, 0.15));
+      border-color: rgba(16, 185, 129, 0.45);
+      color: #e6fffa;
+    }
+
+    .btn-nav.home-btn:hover {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #ffffff;
+    }
+
+    /* REAL-TIME ENERGY METRICS STRIP */
+    .impact-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .impact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .impact-card:hover {
+      border-color: rgba(16, 185, 129, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .impact-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--secondary);
+      display: grid;
+      place-items: center;
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+
+    .impact-icon.waste { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+    .impact-icon.cost { background: rgba(243, 156, 18, 0.15); color: var(--accent); }
+    .impact-icon.saved { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+    .impact-icon.co2 { background: rgba(56, 189, 248, 0.15); color: var(--info); }
+
+    .impact-info {
+      overflow: hidden;
+    }
+
+    .impact-info span {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: var(--text-muted);
+    }
+
+    .impact-info b {
+      font-family: var(--font-mono);
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: #ffffff;
+      white-space: nowrap;
+    }
+
+    /* GAME STATS & METERS */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .stat-pill {
+      background: linear-gradient(145deg, var(--bg-card), #0c201a);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 9px 14px;
+      position: relative;
+    }
+
+    .stat-pill span {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .stat-pill b {
+      font-family: var(--font-mono);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .combo-badge {
+      position: absolute;
+      right: 12px;
+      top: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+      color: #ffffff;
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 99px;
+      display: none;
+    }
+
+    .combo-badge.active { display: inline-block; animation: pulse 0.6s infinite alternate; }
+
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.12); }
+    }
+
+    .meters-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .meter-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 10px 14px;
+    }
+
+    .meter-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 7px;
+    }
+
+    .meter-track {
+      height: 9px;
+      background: #112822;
+      border-radius: 99px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .meter-fill {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: width 0.3s ease, background 0.3s ease;
+      border-radius: 99px;
+    }
+
+    .meter-fill.warning {
+      background: linear-gradient(90deg, #f59e0b, #ef4444);
+    }
+
+    .meter-fill.danger {
+      background: linear-gradient(90deg, #ef4444, #b91c1c);
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+    }
+
+    .timebar-container {
+      height: 4px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .timebar-fill {
+      height: 100%;
+      width: 100%;
+      background: var(--accent);
+      transition: width 0.1s linear;
+    }
+
+    /* MAIN GAMEPLAY LAYOUT */
+    .game-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 310px;
+      gap: 14px;
+      align-items: start;
+    }
+
+    /* CANVAS SCENE */
+    .scene-box {
+      position: relative;
+      background: #05120d;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    }
+
+    .scene-header {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      right: 12px;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .scene-pill {
+      background: rgba(8, 23, 18, 0.88);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 6px 12px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      color: #ffffff;
+      backdrop-filter: blur(8px);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .scene-pill.live {
+      border-color: rgba(16, 185, 129, 0.6);
+      color: #6ee7b7;
+    }
+
+    canvas#scene {
+      display: block;
+      width: 100%;
+      height: auto;
+      cursor: crosshair;
+      touch-action: manipulation;
+    }
+
+    .feedback-strip {
+      margin-top: 10px;
+      padding: 12px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      font-size: 0.84rem;
+      color: #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 48px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .feedback-strip i {
+      color: var(--secondary);
+      font-size: 1.1rem;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      display: grid;
+      gap: 12px;
+    }
+
+    .side-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .side-card h3 {
+      font-size: 0.88rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: -0.2px;
+    }
+
+    .side-card h3 i {
+      color: var(--secondary);
+    }
+
+    .side-card p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .objectives-list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .objective-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 6px 10px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      font-size: 0.8rem;
+      transition: all 0.2s ease;
+    }
+
+    .objective-item.done {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: rgba(16, 185, 129, 0.35);
+      color: #a7f3d0;
+    }
+
+    .obj-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .objective-item.done .obj-dot {
+      background: var(--secondary);
+      box-shadow: 0 0 8px var(--secondary);
+    }
+
+    .device-title {
+      font-weight: 800;
+      color: #ffffff;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .device-stat-chip {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-top: 6px;
+      margin-right: 4px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .device-stat-chip.waste {
+      background: rgba(239, 68, 68, 0.15);
+      color: #fca5a5;
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    .actions-box {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .btn-act {
+      border: 0;
+      border-radius: 11px;
+      padding: 10px 14px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.82rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+    }
+
+    .btn-act:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(5, 150, 105, 0.45);
+      background: linear-gradient(135deg, #047857, #059669);
+    }
+
+    .btn-act.secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: #e2e8f0;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: none;
+    }
+
+    .btn-act.secondary:hover {
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-act.warning {
+      background: linear-gradient(135deg, #d97706, #f59e0b);
+      color: #ffffff;
+    }
+
+    /* OVERLAYS & MODALS */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(4, 15, 11, 0.88);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      overflow-y: auto;
+      transition: opacity 0.3s ease;
+    }
+
+    .overlay.hide {
+      display: none !important;
+    }
+
+    .modal-card {
+      width: min(560px, 100%);
+      max-height: 88vh;
+      margin: auto;
+      overflow-y: auto;
+      background: linear-gradient(145deg, #0e2921, #081a14);
+      border: 1px solid rgba(16, 185, 129, 0.45);
+      border-radius: 22px;
+      padding: 22px 20px;
+      text-align: center;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.85);
+      position: relative;
+    }
+
+    .modal-card::-webkit-scrollbar {
+      width: 6px;
+    }
+    .modal-card::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 99px;
+    }
+    .modal-card::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 99px;
+    }
+
+    .modal-icon {
+      font-size: 2.5rem;
+      margin-bottom: 6px;
+      display: inline-block;
+    }
+
+    .modal-card h2 {
+      font-size: clamp(1.2rem, 3vw, 1.55rem);
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: #ffffff;
+    }
+
+    .modal-card p {
+      color: #cbd5e1;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .modal-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin: 12px 0;
+      text-align: left;
+    }
+
+    .modal-stat-item {
+      padding: 8px 12px;
+      background: rgba(0, 0, 0, 0.28);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 12px;
+    }
+
+    .modal-stat-item span {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .modal-stat-item b {
+      font-family: var(--font-mono);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--secondary);
+    }
+
+    .modal-fact {
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 4px solid var(--secondary);
+      padding: 10px 14px;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 0.82rem;
+      color: #d1fae5;
+      margin: 14px 0 20px;
+    }
+
+    .modal-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .modal-buttons .btn-act {
+      padding: 12px 20px;
+      font-size: 0.92rem;
+    }
+
+    /* TOAST FLOATER */
+    .toast-pill {
+      position: absolute;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(10, 26, 20, 0.95);
+      border: 1px solid var(--secondary);
+      padding: 9px 18px;
+      border-radius: 99px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #ffffff;
+      pointer-events: none;
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      z-index: 30;
+    }
+
+    .toast-pill.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .game-grid { grid-template-columns: 1fr; }
+      .impact-strip { grid-template-columns: repeat(2, 1fr); }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 580px) {
+      .wrap { padding: 10px; }
+      .top-bar { flex-direction: column; align-items: stretch; gap: 12px; }
+      .top-nav { justify-content: space-between; }
+      .impact-strip { grid-template-columns: 1fr; }
+      .meters-row { grid-template-columns: 1fr; }
+      .modal-card { padding: 20px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+  <!-- TOP NAVIGATION HEADER -->
+  <header class="top-bar">
+    <div class="brand-group">
+      <a href="../../index.html" class="brand-logo" title="Kembali ke Beranda SparkSave">
+        <i class="bi bi-arrow-left"></i>
+      </a>
+      <div class="brand-text">
+        <h1>
+          <span>Eco Detective</span>
+          <span style="font-size:0.75rem; background:rgba(16,185,129,0.18); border:1px solid rgba(16,185,129,0.4); color:#6ee7b7; padding:2px 8px; border-radius:99px;">
+            Operation Green Campus
+          </span>
+        </h1>
+        <small>Simulasi Investigasi Efisiensi Energi SMK Wikrama</small>
+      </div>
+    </div>
+
+    <div class="top-nav">
+      <button class="btn-nav" id="soundToggle" title="Nyalakan/Matikan Suara">
+        <i class="bi bi-volume-up-fill" id="soundIcon"></i>
+        <span id="soundText">Suara: ON</span>
+      </button>
+      <button class="btn-nav" id="pauseBtn" title="Jeda Permainan">
+        <i class="bi bi-pause-fill"></i>
+        <span>Jeda</span>
+      </button>
+      <a href="../../index.html" class="btn-nav home-btn" title="Kembali ke Halaman Beranda">
+        <i class="bi bi-house-door-fill"></i>
+        <span>Beranda</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- REAL-TIME IMPACT SIMULATION STRIP -->
+  <section class="impact-strip">
+    <div class="impact-card">
+      <div class="impact-icon waste"><i class="bi bi-lightning-charge-fill"></i></div>
+      <div class="impact-info">
+        <span>Beban Boros Aktif</span>
+        <b id="liveWaste">0 Watt</b>
+      </div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon cost"><i class="bi bi-cash-stack"></i></div>
+      <div class="impact-info">
+        <span>Kerugian Biaya (PLN)</span>
+        <b id="liveCost">Rp 0 /bln</b>
+      </div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon saved"><i class="bi bi-shield-fill-check"></i></div>
+      <div class="impact-info">
+        <span>Biaya Diselamatkan</span>
+        <b id="totalSavedCost">Rp 0</b>
+      </div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon co2"><i class="bi bi-cloud-slash-fill"></i></div>
+      <div class="impact-info">
+        <span>Emisi Karbon Dicegah</span>
+        <b id="totalCo2Saved">0,0 kg CO₂</b>
+      </div>
+    </div>
+  </section>
+
+  <!-- GAME SCORE & TIME STATS -->
+  <section class="stats-row">
+    <div class="stat-pill">
+      <span>Level / Lokasi</span>
+      <b id="levelText">01 / 08</b>
+    </div>
+    <div class="stat-pill">
+      <span>Waktu Tersisa</span>
+      <b id="timeText">00:45</b>
+    </div>
+    <div class="stat-pill">
+      <span>Skor Investigasi</span>
+      <b id="scoreText">0000</b>
+    </div>
+    <div class="stat-pill">
+      <span>Aksi Kombo</span>
+      <b id="comboText">x0</b>
+      <span class="combo-badge" id="comboBadge">STREAK!</span>
+    </div>
+  </section>
+
+  <!-- STATUS METERS -->
+  <section class="meters-row">
+    <div class="meter-box">
+      <div class="meter-label">
+        <span><i class="bi bi-battery-charging me-1"></i> Stabilitas Energi Kampus</span>
+        <b id="energyText">100%</b>
+      </div>
+      <div class="meter-track">
+        <div class="meter-fill" id="energyFill"></div>
+      </div>
+    </div>
+    <div class="meter-box">
+      <div class="meter-label">
+        <span><i class="bi bi-wallet2 me-1"></i> Kesehatan Anggaran Sekolah</span>
+        <b id="budgetText">100%</b>
+      </div>
+      <div class="meter-track">
+        <div class="meter-fill" id="budgetFill"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIME PROGRESS BAR -->
+  <div class="timebar-container">
+    <div class="timebar-fill" id="timebar"></div>
+  </div>
+
+  <!-- GAMEPLAY AREA & SIDEBAR -->
+  <div class="game-grid">
+    <main>
+      <div class="scene-box">
+        <div class="scene-header">
+          <span class="scene-pill live" id="locBadge"><i class="bi bi-geo-alt-fill"></i> KELAS XI PPLG</span>
+          <span class="scene-pill" id="phaseBadge"><i class="bi bi-search"></i> INVESTIGASI AKTIF</span>
+        </div>
+        
+        <canvas id="scene" width="960" height="540" aria-label="Ruangan sekolah interaktif untuk investigasi energi"></canvas>
+        
+        <!-- TOAST NOTIFICATION -->
+        <div class="toast-pill" id="toast"></div>
+      </div>
+
+      <div class="feedback-strip" id="feedback">
+        <i class="bi bi-info-circle-fill"></i>
+        <span>Pilih perangkat di dalam ruangan untuk memulai investigasi. Arahkan mouse untuk mendeteksi status.</span>
+      </div>
+    </main>
+
+    <!-- RIGHT AUDIT SIDEBAR -->
+    <aside class="sidebar">
+      <div class="side-card">
+        <h3><i class="bi bi-crosshair"></i> Target Investigasi</h3>
+        <div class="objectives-list" id="objectives"></div>
+      </div>
+
+      <div class="side-card">
+        <h3><i class="bi bi-clipboard2-check-fill"></i> Hasil Pemeriksaan</h3>
+        <div id="selectedInfo">
+          <p>Belum ada objek yang dipilih. Klik perangkat apa pun di ruangan untuk memeriksa beban listriknya.</p>
+        </div>
+        <div class="actions-box" id="actionsBox"></div>
+      </div>
+
+      <div class="side-card">
+        <h3><i class="bi bi-lightbulb-fill"></i> Instruksi & Petunjuk</h3>
+        <p id="roomClue">Matahari sedang cerah di luar. Periksa lampu yang tidak diperlukan, proyektor standby, dan kabel adaptor kosong.</p>
+        <p style="font-size:0.75rem; color:#64748b; margin-top:8px;">
+          <i class="bi bi-exclamation-triangle me-1"></i> Jangan mematikan perangkat penting seperti server sekolah atau kulkas obat UKS!
+        </p>
+      </div>
+
+      <div class="side-card">
+        <h3><i class="bi bi-bar-chart-fill"></i> Rekap Penanganan</h3>
+        <p id="auditStats">0 perangkat diamankan · 0 kesalahan</p>
+        <div style="margin-top:10px; display:flex; gap:8px;">
+          <a href="../../index.html" class="btn-act secondary" style="width:100%; text-decoration:none; padding:8px 10px;">
+            <i class="bi bi-arrow-left"></i> Beranda
+          </a>
+          <a href="data.html" class="btn-act secondary" style="width:100%; text-decoration:none; padding:8px 10px;">
+            <i class="bi bi-graph-up"></i> Data Riset
+          </a>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- GLOBAL MODAL OVERLAY (RESPONSIVE & SCROLLABLE) -->
+<div class="overlay" id="overlay">
+  <div class="modal-card" id="modalContent"></div>
+</div>
+
+<script>
+(() => {
+  "use strict";
+
+  // --- AUDIO SYNTHESIS ENGINE (Web Audio API - Offline & Instant) ---
+  class SoundManager {
+    constructor() {
+      this.enabled = localStorage.getItem("sparksave_sound") !== "false";
+      this.ctx = null;
+    }
+
+    init() {
+      if (!this.ctx) {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (AudioCtx) this.ctx = new AudioCtx();
+      }
+      if (this.ctx && this.ctx.state === "suspended") {
+        this.ctx.resume();
+      }
+    }
+
+    toggle() {
+      this.enabled = !this.enabled;
+      localStorage.setItem("sparksave_sound", this.enabled ? "true" : "false");
+      return this.enabled;
+    }
+
+    playTone(freq, duration, type = "sine", gainVal = 0.15) {
+      if (!this.enabled) return;
+      try {
+        this.init();
+        if (!this.ctx) return;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+        gain.gain.setValueAtTime(gainVal, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start();
+        osc.stop(this.ctx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    click() {
+      this.playTone(850, 0.04, "sine", 0.08);
+    }
+
+    switchToggle() {
+      if (!this.enabled) return;
+      this.playTone(400, 0.05, "triangle", 0.18);
+      setTimeout(() => this.playTone(280, 0.06, "sine", 0.12), 40);
+    }
+
+    acBeep() {
+      if (!this.enabled) return;
+      this.playTone(2050, 0.07, "sine", 0.15);
+      setTimeout(() => this.playTone(2050, 0.07, "sine", 0.15), 110);
+    }
+
+    unplug() {
+      this.playTone(320, 0.08, "square", 0.09);
+    }
+
+    success(combo = 1) {
+      if (!this.enabled) return;
+      const base = 440;
+      const notes = [base, base * 1.25, base * 1.5, base * 2];
+      notes.forEach((freq, idx) => {
+        setTimeout(() => this.playTone(freq + Math.min(200, combo * 25), 0.12, "sine", 0.14), idx * 55);
+      });
+    }
+
+    error() {
+      if (!this.enabled) return;
+      this.playTone(160, 0.22, "sawtooth", 0.22);
+      setTimeout(() => this.playTone(130, 0.25, "sawtooth", 0.25), 90);
+    }
+
+    levelClear() {
+      if (!this.enabled) return;
+      [523, 659, 784, 1046].forEach((f, i) => {
+        setTimeout(() => this.playTone(f, 0.25, "triangle", 0.2), i * 110);
+      });
+    }
+  }
+
+  const audio = new SoundManager();
+
+  // --- DOM REFERENCES ---
+  const $ = id => document.getElementById(id);
+  const canvas = $("scene");
+  const ctx = canvas.getContext("2d");
+  const W = 960, H = 540;
+
+  // --- GAME CONSTANTS & METRICS ---
+  // Tarif Listrik PLN Golongan R-1/TR (1.300 VA ke atas): Rp 1.444,70 per kWh
+  const TARIF_PLN_KWH = 1444.70;
+  // Faktor emisi jaringan listrik Indonesia: ~0.85 kg CO2 per kWh
+  const CO2_FACTOR_KWH = 0.85;
+
+  // --- MISSIONS & ROOMS DATA ---
+  const levels = [
+    {
+      name: "Kelas XI PPLG",
+      icon: "🏫",
+      time: 45,
+      clue: "Matahari di luar sangat cerah. Periksa lampu yang tidak perlu, proyektor standby, dan charger menggantung.",
+      fact: "Mematikan lampu ruang kelas saat siang hari yang cerah dapat menghemat hingga 30% konsumsi listrik harian tanpa mengorbankan kenyamanan belajar.",
+      items: [
+        ["lamp", 180, 145, "boros", "Lampu Papan Tulis", "Lampu menyala padahal cahaya jendela luar sudah sangat terang.", 40],
+        ["projector", 480, 160, "boros", "Proyektor Kelas", "Proyektor dibiarkan menyala dalam status standby kosong setelah presentasi.", 220],
+        ["pc", 730, 360, "aktif", "Laptop Praktikum Siswa", "Siswa sedang aktif mengetik kode tugas pemrograman.", 150],
+        ["charger", 840, 440, "boros", "Adaptor Charger", "Adaptor charger tercolok di stopkontak tanpa smartphone/laptop terhubung (phantom load).", 12],
+        ["fan", 310, 290, "aktif", "Kipas Angin Kelas", "Digunakan bersama agar sirkulasi udara ruang kelas tetap segar.", 55],
+        ["lamp", 770, 145, "aktif", "Lampu Sudut Belakang", "Area sudut ruangan masih membutuhkan pencahayaan baca.", 40]
+      ]
+    },
+    {
+      name: "Laboratorium Komputer",
+      icon: "💻",
+      time: 48,
+      clue: "Praktikum baru saja selesai. Tidak semua komputer yang menyala sedang digunakan. Periksa meja yang kosong.",
+      fact: "Satu komputer PC yang menyala idle tanpa shutdown mengonsumsi sekitar 150 Watt. Jika 20 komputer dibiarkan semalaman, itu setara dengan pemborosan 36 kWh!",
+      items: [
+        ["pc", 160, 350, "boros", "PC Workstation 01", "Komputer menyala di meja siswa yang sudah kosong.", 150],
+        ["pc", 350, 350, "aktif", "PC Workstation 02", "Siswa sedang menyelesaikan build project akhir.", 150],
+        ["pc", 540, 350, "boros", "PC Workstation 03", "Monitor dan CPU menyala tanpa pengguna.", 150],
+        ["pc", 730, 350, "aktif", "PC Workstation 04", "Siswa sedang menunggu proses upload tugas.", 150],
+        ["lamp", 270, 145, "aktif", "Lampu Utama Lab", "Diperlukan untuk penerangan ruangan saat praktikum berlangsung.", 40],
+        ["charger", 855, 430, "boros", "Charger Cadangan", "Kabel charger tersambung ke colokan lab tanpa ada perangkat.", 12]
+      ]
+    },
+    {
+      name: "Ruang Guru",
+      icon: "🧑‍🏫",
+      time: 48,
+      clue: "AC disetel 18°C dan jendela terbuka. Atur suhu ke 24°C dan tutup jendela untuk mencegah beban pendinginan berlebih.",
+      fact: "Setiap kenaikan 1°C pada pengaturan AC (misal dari 18°C ke 24°C) dapat menghemat konsumsi energi listrik pendingin ruangan hingga 6-8%.",
+      items: [
+        ["ac", 330, 155, "boros", "AC Ruang Guru", "Suhu disetel pada 18°C. Atur ke suhu ideal 24°C untuk efisiensi energi.", 900],
+        ["window", 780, 215, "boros", "Jendela Ruang Guru", "Jendela terbuka lebar sementara AC sedang menyala. Udara dingin bocor ke luar.", 0],
+        ["pc", 190, 365, "boros", "PC Administrasi Guru", "Komputer input nilai menyala tetapi guru sedang mengajar di kelas lain.", 140],
+        ["pc", 550, 365, "aktif", "PC Guru Wali", "Sedang digunakan untuk merekap absensi kehadiran siswa.", 140],
+        ["lamp", 720, 145, "aktif", "Lampu Meja Kerja", "Diperlukan untuk memeriksa berkas cetak ujian.", 40],
+        ["charger", 850, 420, "boros", "Charger Dinding", "Charger tertancap di dekat sofa tanpa perangkat.", 12]
+      ]
+    },
+    {
+      name: "Perpustakaan Sekolah",
+      icon: "📚",
+      time: 50,
+      clue: "Perpustakaan sedang sepi di area rak buku belakang. Amankan lampu dan perangkat di zona yang tidak berpenghuni.",
+      fact: "Zonasi sakelar lampu dan pemanfaatan pencahayaan alami jendela perpustakaan dapat memangkas 40% kebutuhan daya penerangan.",
+      items: [
+        ["lamp", 170, 145, "boros", "Lampu Lorong Rak Belakang", "Area rak buku belakang sedang kosong namun lampunya tetap menyala terang.", 40],
+        ["lamp", 470, 145, "aktif", "Lampu Meja Baca", "Siswa sedang membaca buku referensi di area ini.", 40],
+        ["pc", 700, 365, "boros", "PC OPAC Katalog", "Komputer katalog buku menyala tanpa ada pengunjung yang menggunakan.", 130],
+        ["fan", 360, 305, "boros", "Kipas Area Diskusi", "Area diskusi kosong namun kipas angin tetap berputar kencang.", 55],
+        ["charger", 850, 430, "boros", "Charger Meja Petugas", "Adaptor laptop petugas terpasang tanpa terhubung ke laptop.", 12],
+        ["window", 160, 270, "aktif", "Jendela Sirkulasi", "Jendela tertutup dengan baik menjaga kestabilan ruangan.", 0]
+      ]
+    },
+    {
+      name: "Kantin Sekolah",
+      icon: "🍽️",
+      time: 52,
+      clue: "Kulkas penyimpanan minuman harus selalu menyala! Fokuskan penghematan pada dispenser air dan kipas area kosong.",
+      fact: "Jangan pernah mematikan kulkas pendingin makanan sembarangan. Gunakan dispenser mode hemat (ECO) agar pemanas tidak bekerja terus-menerus.",
+      items: [
+        ["fridge", 220, 350, "aktif", "Kulkas Minuman Kantin", "Kulkas menyimpan susu dan minuman dingin. Wajib tetap menyala!", 120],
+        ["dispenser", 500, 350, "boros", "Dispenser Air Minum", "Mode pemanas air aktif 24 jam padahal tidak ada yang memesan air panas.", 350],
+        ["lamp", 190, 145, "boros", "Lampu Kanopi Kantin", "Cahaya matahari luar sudah cukup terang benderang.", 40],
+        ["fan", 700, 295, "boros", "Kipas Sudut Kantin", "Kipas berputar di area bangku yang sedang kosong.", 55],
+        ["window", 820, 215, "aktif", "Ventilasi Kantin", "Ventilasi terbuka menjaga aliran udara segar kantin.", 0],
+        ["charger", 850, 430, "boros", "Charger Kasir", "Charger terpasang di meja kasir tanpa ponsel.", 12]
+      ]
+    },
+    {
+      name: "Aula Serbaguna",
+      icon: "🏟️",
+      time: 55,
+      clue: "Acara upacara dan seminar telah usai. Pastikan lampu panggung dan amplifier dimatikan, namun lampu jalur darurat tetap aktif.",
+      fact: "Lampu jalur evakuasi (Exit Sign) adalah perangkat keselamatan gedung yang wajib menyala 24/7 dan tidak boleh dimatikan.",
+      items: [
+        ["lamp", 170, 145, "boros", "Spotlight Panggung", "Lampu sorot panggung masih menyala meski acara sudah selesai.", 60],
+        ["projector", 480, 160, "boros", "Proyektor Layar Aula", "Layar proyektor aula standby menampilkan logo statis.", 250],
+        ["speaker", 730, 350, "boros", "Power Amplifier Audio", "Sistem tata suara aula masih aktif dalam keadaan tidak digunakan.", 180],
+        ["ac", 300, 155, "aktif", "AC Sentral Aula", "Petugas kebersihan aula masih beraktivitas di dalam. Biarkan tetap sejuk.", 800],
+        ["lamp", 790, 145, "aktif", "Lampu Emergency Exit", "Lampu penunjuk jalur keselamatan gedung. Wajib aktif!", 40],
+        ["charger", 850, 430, "boros", "Charger Soundman", "Adaptor charger tertinggal di panel kontrol audio.", 12]
+      ]
+    },
+    {
+      name: "Ruang Server Pusat",
+      icon: "🖥️",
+      time: 58,
+      clue: "PERINGATAN TINGGI! Server dan pendingin presisi TIDAK BOLEH dimatikan! Amankan hanya periferal teknisi yang mubazir.",
+      fact: "Ruang server menopang seluruh sistem informasi sekolah dan website. Sistem pendinginnya bertugas mencegah overheating perangkat kritis.",
+      items: [
+        ["server", 250, 350, "aktif", "Main Rack Server", "Server utama database dan web sekolah. SANGAT PENTING: JANGAN DIMATIKAN!", 450],
+        ["ac", 650, 155, "aktif", "Precision AC Server", "Pendingin ruangan server untuk mencegah server overheat. WAJIB AKTIF!", 700],
+        ["lamp", 170, 145, "boros", "Lampu Rak Cadangan", "Area penyimpanan kabel kosong, lampu dibiarkan menyala.", 40],
+        ["pc", 500, 370, "boros", "Monitor Konsol Teknisi", "Monitor tambahan teknisi tertinggal menyala semalaman.", 100],
+        ["charger", 850, 430, "boros", "Adaptor Tester", "Adaptor pengujian tertinggal di stopkontak dinding.", 12],
+        ["speaker", 790, 350, "boros", "Speaker Monitor", "Speaker kecil teknisi menyala tanpa input audio.", 60]
+      ]
+    },
+    {
+      name: "FINAL: Gedung Hijau Wikrama",
+      icon: "🏆",
+      time: 65,
+      clue: "Uji ketelitian puncak! Identifikasi semua potensi pemborosan di seluruh lantai gedung dan pertahankan fasilitas krusial.",
+      fact: "Membangun budaya hemat energi berkelanjutan butuh komitmen seluruh warga sekolah setiap hari, mulai dari satu sakelar kecil!",
+      items: [
+        ["lamp", 150, 145, "boros", "Lampu Koridor Utama", "Cahaya matahari melalui dinding kaca gedung sudah mencukupi.", 40],
+        ["projector", 430, 155, "boros", "Proyektor Smart Classroom", "Proyektor tertinggal menyala setelah kelas mentoring.", 250],
+        ["ac", 750, 150, "boros", "AC Ruang Meeting", "Suhu disetel 16°C. Atur ke 24°C agar kompresor tidak bekerja berat.", 900],
+        ["window", 870, 245, "boros", "Jendela Ruang Meeting", "Jendela sedikit terbuka saat AC menyala.", 0],
+        ["pc", 260, 370, "boros", "PC Workstation Admin", "Komputer menyala tanpa ada pegawai di meja.", 150],
+        ["fridge", 500, 370, "aktif", "Kulkas Vaksin & Obat UKS", "Kulkas medis UKS menyimpan obat penurun panas dan vaksin. Wajib aktif!", 120],
+        ["dispenser", 700, 380, "boros", "Dispenser Gedung", "Pemanas air terus mendidih tanpa pengguna. Aktifkan mode ECO.", 350],
+        ["charger", 850, 440, "boros", "Charger Pengunjung", "Kabel charger tertinggal di lobi.", 12],
+        ["lamp", 620, 145, "aktif", "Lampu Meja Kerja", "Staf sedang menyelesaikan laporan administrasi di sini.", 40]
+      ]
+    }
+  ];
+
+  // --- GAME STATE VARIABLES ---
+  let level = 0;
+  let score = 0;
+  let energy = 100;
+  let budget = 100;
+  let time = 0;
+  let combo = 0;
+  let errors = 0;
+  let secured = 0;
+  let selected = -1;
+  let hovered = -1;
+  let playing = false;
+  let paused = false;
+  let lastTime = 0;
+  let rafId = 0;
+  let toastTimer = 0;
+  let remaining = 0;
+  let totalSavedWattHours = 0;
+  let devices = [];
+  let floatingTexts = [];
+
+  // --- INITIALIZE SOUND BUTTON & ICON ---
+  function updateSoundUI() {
+    const icon = $("soundIcon");
+    const text = $("soundText");
+    if (audio.enabled) {
+      icon.className = "bi bi-volume-up-fill";
+      text.textContent = "Suara: ON";
+    } else {
+      icon.className = "bi bi-volume-mute-fill";
+      text.textContent = "Suara: OFF";
+    }
+  }
+
+  $("soundToggle").onclick = () => {
+    audio.toggle();
+    updateSoundUI();
+    if (audio.enabled) audio.click();
+  };
+  updateSoundUI();
+
+  // --- PAUSE TOGGLE ---
+  $("pauseBtn").onclick = () => {
+    if (!playing) return;
+    paused = !paused;
+    if (paused) {
+      audio.click();
+      showPauseModal();
+    } else {
+      $("overlay").classList.add("hide");
+      lastTime = performance.now();
+      loop(performance.now());
+    }
+  };
+
+  function showPauseModal() {
+    $("overlay").classList.remove("hide");
+    $("modalContent").innerHTML = `
+      <div class="modal-icon">⏸️</div>
+      <h2>Permainan Dijeda</h2>
+      <p>Investigasi sedang dihentikan sementara. Luangkan waktu untuk mengatur napas sebelum melanjutkan.</p>
+      <div class="modal-buttons">
+        <button class="btn-act" id="resumeBtn"><i class="bi bi-play-fill fs-5"></i> Lanjutkan Investigasi</button>
+        <button class="btn-act secondary" id="restartLevelBtn"><i class="bi bi-arrow-clockwise"></i> Ulangi Level Ini</button>
+        <a href="../../index.html" class="btn-act secondary" style="text-decoration:none;"><i class="bi bi-house-door-fill"></i> Kembali ke Beranda</a>
+      </div>
+    `;
+    $("resumeBtn").onclick = () => {
+      audio.click();
+      paused = false;
+      $("overlay").classList.add("hide");
+      lastTime = performance.now();
+    };
+    $("restartLevelBtn").onclick = () => {
+      audio.click();
+      paused = false;
+      $("overlay").classList.add("hide");
+      initLevel();
+      playing = true;
+      lastTime = performance.now();
+    };
+  }
+
+  // --- LEVEL INITIALIZATION ---
+  function initLevel() {
+    const L = levels[level];
+    devices = L.items.map((item, idx) => ({
+      id: idx,
+      type: item[0],
+      x: item[1],
+      y: item[2],
+      state: item[3], // 'boros' or 'aktif'
+      name: item[4],
+      desc: item[5],
+      watt: item[6],
+      done: false,
+      temp: item[0] === "ac" ? 18 : 24,
+      open: item[0] === "window" && item[3] === "boros",
+      eco: false
+    }));
+
+    time = L.time;
+    selected = -1;
+    hovered = -1;
+    combo = 0;
+    remaining = devices.filter(d => d.state === "boros").length;
+    floatingTexts = [];
+
+    $("locBadge").innerHTML = `<i class="bi bi-geo-alt-fill"></i> ${L.name.toUpperCase()}`;
+    $("phaseBadge").innerHTML = `<i class="bi bi-search"></i> INVESTIGASI AKTIF`;
+    $("roomClue").textContent = L.clue;
+    $("selectedInfo").innerHTML = `<p>Belum ada objek yang dipilih. Klik perangkat apa pun di ruangan untuk memeriksa beban listriknya.</p>`;
+    $("actionsBox").innerHTML = "";
+    $("feedback").innerHTML = `<i class="bi bi-info-circle-fill"></i> Misi dimulai di <b>${L.name}</b>. Periksa perangkat boros dan amankan sebelum waktu habis!`;
+
+    renderObjectives();
+    updateUI();
+    draw();
+  }
+
+  // --- RENDER OBJECTIVES LIST ---
+  function renderObjectives() {
+    const targets = devices.filter(d => d.state === "boros");
+    if (targets.length === 0) {
+      $("objectives").innerHTML = `<div class="objective-item done"><span class="obj-dot"></span><span>Semua target aman!</span></div>`;
+      return;
+    }
+    $("objectives").innerHTML = targets.map(d => `
+      <div class="objective-item ${d.done ? 'done' : ''}">
+        <span class="obj-dot"></span>
+        <span style="font-weight:${d.done ? '600' : '700'};">${d.done ? '✓ ' : ''}${d.name} (${d.watt}W)</span>
+      </div>
+    `).join("");
+  }
+
+  // --- UPDATE UI METRICS & STATUS BARS ---
+  function updateUI() {
+    const pctEnergy = Math.max(0, Math.round(energy));
+    const pctBudget = Math.max(0, Math.round(budget));
+
+    // Stats
+    $("levelText").textContent = String(level + 1).padStart(2, "0") + " / 08";
+    $("timeText").textContent = "00:" + String(Math.max(0, Math.ceil(time))).padStart(2, "0");
+    $("scoreText").textContent = String(score).padStart(4, "0");
+    $("comboText").textContent = "x" + combo;
+
+    const comboBadge = $("comboBadge");
+    if (combo >= 2) {
+      comboBadge.classList.add("active");
+      comboBadge.textContent = combo + "x COMBO!";
+    } else {
+      comboBadge.classList.remove("active");
+    }
+
+    // Meters
+    $("energyText").textContent = pctEnergy + "%";
+    $("budgetText").textContent = pctBudget + "%";
+    $("energyFill").style.width = pctEnergy + "%";
+    $("budgetFill").style.width = pctBudget + "%";
+
+    $("energyFill").className = "meter-fill" + (pctEnergy < 25 ? " danger" : pctEnergy < 50 ? " warning" : "");
+    $("budgetFill").className = "meter-fill" + (pctBudget < 25 ? " danger" : pctBudget < 50 ? " warning" : "");
+
+    // Time progress
+    const totalTime = levels[level].time;
+    $("timebar").style.width = Math.max(0, (time / totalTime) * 100) + "%";
+
+    // Dynamic Real-World Impact Calculations
+    const currentWasteWatt = devices
+      .filter(d => d.state === "boros" && !d.done)
+      .reduce((sum, d) => sum + d.watt, 0);
+
+    // Estimasi biaya per bulan jika perangkat dibiarkan menyala 8 jam/hari (24 hari sekolah):
+    // kWh = (Watt * 8 * 24) / 1000
+    const monthlyKwhWaste = (currentWasteWatt * 8 * 24) / 1000;
+    const monthlyCostWaste = monthlyKwhWaste * TARIF_PLN_KWH;
+
+    // Total saved calculation
+    const totalSavedKwh = totalSavedWattHours / 1000;
+    const totalSavedRp = totalSavedKwh * TARIF_PLN_KWH;
+    const totalCo2Kg = totalSavedKwh * CO2_FACTOR_KWH;
+
+    $("liveWaste").textContent = currentWasteWatt.toLocaleString("id-ID") + " Watt";
+    $("liveCost").textContent = "Rp " + Math.round(monthlyCostWaste).toLocaleString("id-ID") + " /bln";
+    $("totalSavedCost").textContent = "Rp " + Math.round(totalSavedRp).toLocaleString("id-ID");
+    $("totalCo2Saved").textContent = totalCo2Kg.toFixed(1).replace(".", ",") + " kg CO₂";
+
+    $("auditStats").textContent = `${secured} perangkat diamankan · ${errors} kesalahan`;
+  }
+
+  // --- INSPECTION & SELECTION LOGIC ---
+  function inspect(idx) {
+    if (!playing || paused) return;
+    selected = idx;
+    const d = devices[idx];
+    audio.click();
+
+    let statusChip = d.done
+      ? `<span class="device-stat-chip">✓ Sudah Ditangani</span>`
+      : d.state === "aktif"
+        ? `<span class="device-stat-chip">🛡️ Sedang Digunakan / Penting</span>`
+        : `<span class="device-stat-chip waste">⚠️ Perlu Tindakan Detektif</span>`;
+
+    let infoHtml = `
+      <span class="device-title">${d.name}</span>
+      <p style="margin-bottom:6px;">${d.desc}</p>
+      <div style="font-size:0.8rem; color:#cbd5e1; margin-bottom:8px;">
+        Konsumsi Daya: <b style="color:#6ee7b7;">${d.watt} Watt</b>
+        ${d.type === 'ac' ? ` · Suhu: <b style="color:${d.temp < 24 ? '#f87171' : '#34d399'};">${d.temp}°C</b>` : ''}
+      </div>
+      <div>${statusChip}</div>
+    `;
+    $("selectedInfo").innerHTML = infoHtml;
+
+    // Render Action Buttons
+    let actions = [];
+    if (d.done) {
+      actions = [];
+    } else if (d.type === "ac" && d.state === "boros") {
+      actions = [
+        ["Atur Suhu ke 24°C (Hemat & Nyaman)", "ac", "bi-thermometer-half"],
+        ["Matikan AC Total", "off_ac", "bi-power secondary"]
+      ];
+    } else if (d.type === "window" && d.state === "boros") {
+      actions = [
+        ["Tutup Jendela (Cegah Bocor Dingin)", "window", "bi-door-closed-fill"]
+      ];
+    } else if (d.type === "dispenser" && d.state === "boros") {
+      actions = [
+        ["Aktifkan Mode Hemat ECO", "eco", "bi-leaf-fill"],
+        ["Cabut Colokan Dispenser", "off", "bi-power secondary"]
+      ];
+    } else if (d.type === "charger" && d.state === "boros") {
+      actions = [
+        ["Cabut Adaptor dari Stopkontak", "off", "bi-plug-fill"]
+      ];
+    } else if (d.state === "boros") {
+      actions = [
+        ["Matikan Sakelar / Shutdown", "off", "bi-power"]
+      ];
+    } else {
+      // Objek penting / sedang dipakai
+      actions = [
+        ["Biarkan Tetap Beroperasi (Aman)", "safe", "bi-shield-check secondary"],
+        ["Paksa Matikan Perangkat", "wrong_off", "bi-exclamation-triangle-fill warning"]
+      ];
+    }
+
+    $("actionsBox").innerHTML = actions.map(act => `
+      <button class="btn-act ${act[1] === 'safe' ? 'secondary' : act[1] === 'wrong_off' ? 'warning' : ''}" data-action="${act[1]}">
+        <i class="bi ${act[2] || 'bi-check-lg'}"></i>
+        <span>${act[0]}</span>
+      </button>
+    `).join("");
+
+    $("actionsBox").querySelectorAll("button").forEach(btn => {
+      btn.addEventListener("click", () => handleAction(btn.dataset.action));
+    });
+
+    draw();
+  }
+
+  // --- FLOATING TEXT ANIMATION ON CANVAS ---
+  function addFloatingText(text, x, y, color = "#6ee7b7") {
+    floatingTexts.push({ text, x, y, color, alpha: 1, vy: -1.2 });
+  }
+
+  // --- ACTION RESOLUTION ---
+  function handleAction(action) {
+    const d = devices[selected];
+    if (!d || !playing || paused || d.done) return;
+
+    // 1. Keputusan Tepat pada perangkat Aktif/Penting
+    if (action === "safe" && d.state === "aktif") {
+      d.done = true;
+      score += 30;
+      combo++;
+      audio.success(combo);
+      addFloatingText("✓ Aman +30", d.x, d.y - 20, "#6ee7b7");
+      showToast("✓ Keputusan Tepat! Perangkat penting dibiarkan aktif. (+30 Skor)");
+      $("feedback").innerHTML = `<i class="bi bi-check-circle-fill text-success"></i> Tepat! <b>${d.name}</b> memang sedang digunakan atau penting bagi fasilitas sekolah.`;
+      selected = -1;
+      $("actionsBox").innerHTML = "";
+      $("selectedInfo").innerHTML = `<p>Pemeriksaan selesai. Lanjutkan penyelidikan ke objek berikutnya di ruangan.</p>`;
+      updateUI();
+      draw();
+      return;
+    }
+
+    // 2. Tindakan Benar pada Perangkat Boros
+    const isCorrectWasteAction =
+      (d.state === "boros") &&
+      (
+        (action === "off" && ["lamp", "projector", "pc", "charger", "fan", "speaker", "dispenser"].includes(d.type)) ||
+        (action === "ac" && d.type === "ac") ||
+        (action === "window" && d.type === "window") ||
+        (action === "eco" && d.type === "dispenser")
+      );
+
+    if (isCorrectWasteAction) {
+      d.done = true;
+      d.state = "aman";
+      if (action === "ac") {
+        d.temp = 24;
+        audio.acBeep();
+      } else if (action === "off" && d.type === "lamp") {
+        audio.switchToggle();
+      } else if (action === "off" && d.type === "charger") {
+        audio.unplug();
+      } else {
+        audio.switchToggle();
+      }
+
+      secured++;
+      remaining--;
+      combo++;
+      
+      const timeBonus = Math.round(time * 1.5);
+      const points = 100 + (combo * 25) + timeBonus;
+      score += points;
+
+      // Akumulasi penghematan energi (misal estimasi 4 jam pemakaian tersisa):
+      const savedWattHours = d.watt * 4;
+      totalSavedWattHours += savedWattHours;
+
+      energy = Math.min(100, energy + 6);
+      budget = Math.min(100, budget + 4);
+
+      audio.success(combo);
+      addFloatingText(`+${points} Poin!`, d.x, d.y - 25, "#34d399");
+      addFloatingText(`⚡ -${d.watt}W`, d.x, d.y - 45, "#fbbf24");
+      
+      showToast(`⚡ TARGET DIAMANKAN! +${points} Poin (Streak x${combo})`);
+      $("feedback").innerHTML = `<i class="bi bi-lightning-charge-fill text-warning"></i> Bagus sekali! <b>${d.name}</b> berhasil dihemat! Beban berkurang <b>${d.watt} Watt</b>.`;
+
+      renderObjectives();
+      selected = -1;
+      $("actionsBox").innerHTML = "";
+      $("selectedInfo").innerHTML = `<p>Bagus! Target ini berhasil diamankan. Pilih perangkat lain di ruangan.</p>`;
+
+      updateUI();
+      draw();
+
+      if (remaining === 0) {
+        setTimeout(() => finishLevel(true), 750);
+      }
+      return;
+    }
+
+    // 3. Kesalahan Tindakan (Salah Mematikan atau Keputusan Keliru)
+    errors++;
+    combo = 0;
+    score = Math.max(0, score - 80);
+    energy = Math.max(0, energy - 12);
+    budget = Math.max(0, budget - 10);
+
+    audio.error();
+    addFloatingText("-80 Poin!", d.x, d.y - 25, "#f87171");
+    showToast("✕ TINDAKAN KURANG TEPAT! (-80 Poin)");
+    $("feedback").innerHTML = `<i class="bi bi-x-circle-fill text-danger"></i> <b>Salah tindakan!</b> Periksa deskripsi perangkat terlebih dahulu. Tidak semua perangkat boleh dimatikan.`;
+
+    updateUI();
+    draw();
+
+    if (energy <= 0 || budget <= 0) {
+      finishGame(false);
+    }
+  }
+
+  // --- TOAST NOTIFICATION ---
+  function showToast(msg) {
+    const el = $("toast");
+    el.textContent = msg;
+    el.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.remove("show"), 1500);
+  }
+
+  // --- FINISH LEVEL (SUCCESS OR TIMEOUT) ---
+  function finishLevel(success) {
+    if (!playing) return;
+    playing = false;
+    $("phaseBadge").innerHTML = `<i class="bi bi-flag-fill"></i> LAPORAN MISI`;
+    $("overlay").classList.remove("hide");
+
+    const L = levels[level];
+    const isPerfect = errors === 0;
+    const isFinalLevel = level === levels.length - 1;
+
+    if (success) {
+      audio.levelClear();
+    } else {
+      audio.error();
+    }
+
+    const rankTitle = isPerfect ? "S-RANK (PERFECT AUDIT)" : errors <= 1 ? "A-RANK (EXCELLENT)" : "B-RANK (COMPLETED)";
+
+    $("modalContent").innerHTML = `
+      <div class="modal-icon">${success ? "🕵️‍♂️🌿" : "⏱️⚠️"}</div>
+      <h2>${success ? "Area Berhasil Diamankan!" : "Waktu Investigasi Habis!"}</h2>
+      <p>
+        <b>${L.name}</b> · ${success ? "Seluruh target pemborosan listrik berhasil ditangani secara optimal." : `Masih ada ${remaining} perangkat boros yang belum sempat diamankan.`}
+      </p>
+
+      <div class="modal-stats-grid">
+        <div class="modal-stat-item">
+          <span>Perangkat Diamankan</span>
+          <b>${secured} Objek</b>
+        </div>
+        <div class="modal-stat-item">
+          <span>Kesalahan Analisis</span>
+          <b style="color:${errors === 0 ? '#34d399' : '#f87171'};">${errors} Kali</b>
+        </div>
+        <div class="modal-stat-item">
+          <span>Total Skor Saat Ini</span>
+          <b>${score} Poin</b>
+        </div>
+        <div class="modal-stat-item">
+          <span>Evaluasi Ketelitian</span>
+          <b style="font-size:1rem;">${rankTitle}</b>
+        </div>
+      </div>
+
+      <div class="modal-fact">
+        <i class="bi bi-lightbulb-fill me-1"></i>
+        <b>Fakta Energi:</b> ${L.fact}
+      </div>
+
+      <div class="modal-buttons">
+        <button class="btn-act" id="nextLevelBtn">
+          <i class="bi ${isFinalLevel ? 'bi-trophy-fill' : 'bi-arrow-right-circle-fill'} fs-5"></i>
+          <span>${isFinalLevel ? 'Lihat Laporan Akhir Kampanye' : `Lanjut ke Level ${level + 2} (${levels[level + 1].name})`}</span>
+        </button>
+        <a href="../../index.html" class="btn-act secondary" style="text-decoration:none;">
+          <i class="bi bi-house-door-fill"></i> Kembali ke Beranda
+        </a>
+      </div>
+    `;
+
+    $("nextLevelBtn").onclick = () => {
+      audio.click();
+      if (isFinalLevel) {
+        finishGame(true);
+      } else {
+        level++;
+        initLevel();
+        $("overlay").classList.add("hide");
+        playing = true;
+        lastTime = performance.now();
+      }
+    };
+  }
+
+  // --- FINISH GAME (VICTORY OR DEFEAT) ---
+  function finishGame(won) {
+    playing = false;
+    $("phaseBadge").innerHTML = `<i class="bi bi-award-fill"></i> KAMPANYE SELESAI`;
+    $("overlay").classList.remove("hide");
+
+    if (won) {
+      audio.levelClear();
+    } else {
+      audio.error();
+    }
+
+    const rank = won && errors <= 2 ? "MASTER GREEN DETECTIVE 🏆" : won ? "SENIOR ECO AUDITOR 🌱" : "ROOKIE INVESTIGATOR 🔍";
+    const totalKwh = (totalSavedWattHours / 1000).toFixed(1);
+    const totalRp = Math.round((totalSavedWattHours / 1000) * TARIF_PLN_KWH).toLocaleString("id-ID");
+    const totalCo2 = ((totalSavedWattHours / 1000) * CO2_FACTOR_KWH).toFixed(1);
+
+    $("modalContent").innerHTML = `
+      <div class="modal-icon">${won ? "🏆🌟" : "⚠️🌱"}</div>
+      <h2>${won ? "Kampus Lebih Hijau & Efisien!" : "Investigasi Terhenti"}</h2>
+      <p style="font-size:1rem; color:#6ee7b7; font-weight:700;">Gelar: ${rank}</p>
+      <p>
+        ${won 
+          ? "Selamat! Kamu berhasil menuntaskan seluruh 8 zona sekolah di SMK Wikrama dan menghentikan pemborosan listrik tersembunyi." 
+          : "Stabilitas energi atau anggaran sekolah menyentuh batas kritis. Coba kembali dengan strategi yang lebih teliti."}
+      </p>
+
+      <div class="modal-stats-grid">
+        <div class="modal-stat-item">
+          <span>Total Skor Akhir</span>
+          <b>${score}</b>
+        </div>
+        <div class="modal-stat-item">
+          <span>Energi Dihemat</span>
+          <b>${totalKwh} kWh</b>
+        </div>
+        <div class="modal-stat-item">
+          <span>Estimasi Biaya Terpangkas</span>
+          <b>Rp ${totalRp}</b>
+        </div>
+        <div class="modal-stat-item">
+          <span>Emisi Karbon Dicegah</span>
+          <b>${totalCo2} kg CO₂</b>
+        </div>
+      </div>
+
+      <div class="modal-fact" style="text-align:center;">
+        <b>Pesan SparkSave:</b> Efisiensi energi bukan tentang hidup dalam gelap, melainkan tentang kesadaran menggunakan daya saat dibutuhkan dan mematikannya saat selesai.
+      </div>
+
+      <div class="modal-buttons">
+        <button class="btn-act" id="restartGameBtn">
+          <i class="bi bi-arrow-repeat fs-5"></i> Mainkan Ulang Kampanye
+        </button>
+        <a href="../../index.html" class="btn-act secondary" style="text-decoration:none;">
+          <i class="bi bi-house-door-fill"></i> Kembali ke Beranda
+        </a>
+        <a href="data.html" class="btn-act secondary" style="text-decoration:none;">
+          <i class="bi bi-bar-chart-fill"></i> Lihat Data Riset Kuesioner
+        </a>
+      </div>
+    `;
+
+    $("restartGameBtn").onclick = () => {
+      audio.click();
+      startCampaign();
+    };
+  }
+
+  // --- START CAMPAIGN ---
+  function startCampaign() {
+    level = 0;
+    score = 0;
+    energy = 100;
+    budget = 100;
+    errors = 0;
+    secured = 0;
+    totalSavedWattHours = 0;
+    paused = false;
+
+    initLevel();
+    $("overlay").classList.add("hide");
+    playing = true;
+    lastTime = performance.now();
+    cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(loop);
+  }
+
+  // --- GAME LOOP ---
+  function loop(ts) {
+    if (!playing || paused) {
+      draw();
+      return;
+    }
+
+    const dt = Math.min(0.05, (ts - lastTime) / 1000 || 0);
+    lastTime = ts;
+
+    time -= dt;
+
+    // Passive drain dari perangkat boros yang masih menyala
+    const currentWaste = devices
+      .filter(d => d.state === "boros" && !d.done)
+      .reduce((sum, d) => sum + d.watt, 0);
+
+    energy -= dt * (0.08 + (currentWaste / 18000));
+    budget -= dt * (0.06 + (currentWaste / 22000));
+
+    // Update floating texts
+    for (let i = floatingTexts.length - 1; i >= 0; i--) {
+      const ft = floatingTexts[i];
+      ft.y += ft.vy;
+      ft.alpha -= dt * 0.9;
+      if (ft.alpha <= 0) floatingTexts.splice(i, 1);
+    }
+
+    if (time <= 0) {
+      time = 0;
+      updateUI();
+      finishLevel(false);
+    } else if (energy <= 0 || budget <= 0) {
+      energy = Math.max(0, energy);
+      budget = Math.max(0, budget);
+      updateUI();
+      finishGame(false);
+    } else {
+      updateUI();
+    }
+
+    draw();
+    if (playing && !paused) {
+      rafId = requestAnimationFrame(loop);
+    }
+  }
+
+  // --- DRAWING ENGINE: REALISTIC & DYNAMIC 2D CANVAS ---
+  function rounded(x, y, w, h, r, fillColor, strokeColor = null, strokeWidth = 1) {
+    ctx.beginPath();
+    ctx.roundRect(x, y, w, h, r);
+    if (fillColor) {
+      ctx.fillStyle = fillColor;
+      ctx.fill();
+    }
+    if (strokeColor) {
+      ctx.strokeStyle = strokeColor;
+      ctx.lineWidth = strokeWidth;
+      ctx.stroke();
+    }
+  }
+
+  function drawRoomBackground() {
+    // 1. Room Wallpaper & Ceiling Gradient
+    const wallGrad = ctx.createLinearGradient(0, 0, 0, 360);
+    if (level === 1) {
+      // Lab Komputer: High-tech slate cool
+      wallGrad.addColorStop(0, "#12252c");
+      wallGrad.addColorStop(1, "#1c3842");
+    } else if (level === 6) {
+      // Server Room: Dark industrial graphite
+      wallGrad.addColorStop(0, "#0a1418");
+      wallGrad.addColorStop(1, "#132128");
+    } else if (level === 5) {
+      // Aula: Deep theater amber-brown
+      wallGrad.addColorStop(0, "#231e28");
+      wallGrad.addColorStop(1, "#362a35");
+    } else {
+      // Kelas & Umum: Warm eco-classroom
+      wallGrad.addColorStop(0, "#d8e7e1");
+      wallGrad.addColorStop(1, "#edf4f0");
+    }
+
+    ctx.fillStyle = wallGrad;
+    ctx.fillRect(0, 0, W, 360);
+
+    // 2. Flooring (Tiled Perspective Floor)
+    const floorGrad = ctx.createLinearGradient(0, 360, 0, H);
+    if (level === 1 || level === 6) {
+      // Anti-static tile floor
+      floorGrad.addColorStop(0, "#26353d");
+      floorGrad.addColorStop(1, "#182329");
+    } else {
+      // Wooden parquet floor
+      floorGrad.addColorStop(0, "#cbb592");
+      floorGrad.addColorStop(1, "#a8906c");
+    }
+    ctx.fillStyle = floorGrad;
+    ctx.fillRect(0, 360, W, H - 360);
+
+    // Floor perspective tile lines
+    ctx.strokeStyle = level === 1 || level === 6 ? "#33454f" : "#98805f";
+    ctx.lineWidth = 1.5;
+    for (let x = 0; x <= W; x += 120) {
+      ctx.beginPath();
+      ctx.moveTo(x, 360);
+      ctx.lineTo(x * 1.05 - 20, H);
+      ctx.stroke();
+    }
+    for (let y = 360; y <= H; y += 45) {
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(W, y);
+      ctx.stroke();
+    }
+
+    // Skirting board (Plin dinding)
+    ctx.fillStyle = level === 1 || level === 6 ? "#1c2a30" : "#725b44";
+    ctx.fillRect(0, 350, W, 12);
+
+    // Ceiling Crown Trim
+    ctx.fillStyle = "rgba(0, 0, 0, 0.15)";
+    ctx.fillRect(0, 0, W, 14);
+
+    // 3. Room-Specific Architectural Features
+    if (level === 0) {
+      // KELAS XI PPLG: Chalkboard & Sunlight
+      drawChalkboard(340, 45, 280, 100);
+      drawDaylightWindows();
+    } else if (level === 1) {
+      // LAB KOMPUTER: Network Conduit & Poster
+      rounded(50, 45, 180, 75, 8, "#1a3038", "#2c4e5b", 2);
+      ctx.fillStyle = "#6ee7b7";
+      ctx.font = "700 13px 'Google Sans', sans-serif";
+      ctx.fillText("LAB KOMPUTER PPLG", 66, 75);
+      ctx.fillStyle = "#94a3b8";
+      ctx.font = "500 11px sans-serif";
+      ctx.fillText("SOP: Matikan PC Setelah Praktikum", 60, 98);
+      drawDaylightWindows(true);
+    } else if (level === 2) {
+      // RUANG GURU: Clock, Bookshelf, Calendar
+      drawWallClock(120, 90);
+      rounded(500, 45, 140, 85, 6, "#ffffff", "#cbd5e1", 1);
+      ctx.fillStyle = "#059669";
+      ctx.fillRect(500, 45, 140, 22);
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "700 11px sans-serif";
+      ctx.fillText("AGENDA KELAS", 530, 61);
+    } else if (level === 3) {
+      // PERPUSTAKAAN: Tall Bookshelves
+      drawBookshelf(50, 60, 160, 240);
+      drawBookshelf(750, 60, 160, 240);
+      drawDaylightWindows();
+    } else if (level === 4) {
+      // KANTIN: Menu Board & Counter
+      rounded(380, 45, 200, 90, 8, "#2d2015", "#8c6541", 3);
+      ctx.fillStyle = "#fef3c7";
+      ctx.font = "800 14px sans-serif";
+      ctx.fillText("KANTIN SEHAT", 430, 75);
+      ctx.font = "500 11px sans-serif";
+      ctx.fillText("Hemat Listrik & Air", 432, 98);
+    } else if (level === 5) {
+      // AULA: Velvet Curtains & Exit Sign
+      drawStageCurtains();
+      rounded(780, 45, 110, 40, 6, "#065f46", "#34d399", 2);
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "800 14px sans-serif";
+      ctx.fillText("EXIT ➔", 812, 70);
+    } else if (level === 6) {
+      // SERVER ROOM: Cable Trays & Temperature Monitor
+      rounded(60, 45, 180, 75, 8, "#091a1e", "#00ffcc", 1);
+      ctx.fillStyle = "#38bdf8";
+      ctx.font = "700 13px 'Roboto Mono', monospace";
+      ctx.fillText("SERVER ROOM SYS", 78, 70);
+      ctx.fillStyle = "#4ade80";
+      ctx.fillText("TEMP: 19.8°C | OK", 78, 95);
+    } else {
+      // GEDUNG HIJAU
+      drawDaylightWindows();
+      rounded(360, 45, 240, 80, 8, "rgba(5, 150, 105, 0.2)", "#10b981", 2);
+      ctx.fillStyle = "#047857";
+      ctx.font = "800 14px 'Google Sans', sans-serif";
+      ctx.fillText("GEDUNG HIJAU WIKRAMA", 390, 80);
+      ctx.font = "600 11px sans-serif";
+      ctx.fillText("Zero Waste & Smart Energy Campus", 382, 102);
+    }
+  }
+
+  function drawChalkboard(x, y, w, h) {
+    rounded(x, y, w, h, 8, "#5d432b", "#3e2918", 3);
+    rounded(x + 8, y + 8, w - 16, h - 16, 5, "#1e3d34");
+    ctx.fillStyle = "#e2e8f0";
+    ctx.font = "600 12px 'Google Sans', sans-serif";
+    ctx.fillText("python: def hemat_energi():", x + 20, y + 34);
+    ctx.fillStyle = "#fef08a";
+    ctx.fillText("  if lampu_siang_cerah == True:", x + 20, y + 54);
+    ctx.fillStyle = "#6ee7b7";
+    ctx.fillText("    matikan_sakelar()  # +100%", x + 20, y + 74);
+  }
+
+  function drawDaylightWindows(isLab = false) {
+    for (let i = 0; i < 2; i++) {
+      const wx = 80 + i * 620;
+      rounded(wx, 55, 170, 150, 8, isLab ? "#1a2c35" : "#6b5038", "#453120", 2);
+      // Sky view outside
+      const sky = ctx.createLinearGradient(0, 65, 0, 195);
+      sky.addColorStop(0, "#7dd3fc");
+      sky.addColorStop(1, "#bae6fd");
+      rounded(wx + 8, 63, 154, 134, 4, sky);
+
+      // Window panes divider
+      ctx.fillStyle = isLab ? "#1a2c35" : "#6b5038";
+      ctx.fillRect(wx + 82, 63, 6, 134);
+      ctx.fillRect(wx + 8, 125, 154, 6);
+
+      // Outdoor tree silhouette
+      ctx.fillStyle = "#15803d";
+      ctx.beginPath();
+      ctx.arc(wx + 50, 180, 36, 0, Math.PI * 2);
+      ctx.arc(wx + 120, 185, 42, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function drawWallClock(cx, cy) {
+    ctx.fillStyle = "#ffffff";
+    ctx.beginPath();
+    ctx.arc(cx, cy, 28, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = "#0f172a";
+    ctx.lineWidth = 3;
+    ctx.stroke();
+
+    // Clock hands
+    ctx.strokeStyle = "#059669";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + 12, cy - 8);
+    ctx.stroke();
+
+    ctx.strokeStyle = "#ef4444";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx - 6, cy + 14);
+    ctx.stroke();
+  }
+
+  function drawBookshelf(x, y, w, h) {
+    rounded(x, y, w, h, 6, "#63472d", "#3d2a19", 2);
+    for (let row = 0; row < 4; row++) {
+      const ry = y + 14 + row * 55;
+      ctx.fillStyle = "#4a3420";
+      ctx.fillRect(x + 8, ry + 42, w - 16, 6);
+      // Colorful books
+      const colors = ["#ef4444", "#3b82f6", "#10b981", "#f59e0b", "#8b5cf6", "#ec4899"];
+      let bx = x + 12;
+      while (bx < x + w - 20) {
+        const bw = 10 + (bx % 7);
+        const bh = 30 + (bx % 10);
+        ctx.fillStyle = colors[(bx + row) % colors.length];
+        rounded(bx, ry + 42 - bh, bw, bh, 2, ctx.fillStyle);
+        bx += bw + 3;
+      }
+    }
+  }
+
+  function drawStageCurtains() {
+    // Red velvet stage drapes on sides
+    for (let c = 0; c < 2; c++) {
+      const cx = c === 0 ? 0 : W - 140;
+      const grad = ctx.createLinearGradient(cx, 0, cx + 140, 0);
+      grad.addColorStop(0, c === 0 ? "#7f1d1d" : "#991b1b");
+      grad.addColorStop(0.5, "#dc2626");
+      grad.addColorStop(1, c === 0 ? "#991b1b" : "#7f1d1d");
+      ctx.fillStyle = grad;
+      ctx.fillRect(cx, 0, 140, 360);
+    }
+  }
+
+  function drawDesk(x, y, scale = 1) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.scale(scale, scale);
+
+    // Desk surface
+    rounded(-60, -12, 120, 44, 6, level === 1 || level === 6 ? "#2f4858" : "#9c7047", "#1a252c", 1.5);
+    // Desk legs
+    ctx.fillStyle = level === 1 || level === 6 ? "#18262f" : "#634529";
+    ctx.fillRect(-50, 28, 8, 45);
+    ctx.fillRect(42, 28, 8, 45);
+    // Modesty panel
+    ctx.fillStyle = level === 1 || level === 6 ? "#223540" : "#7d5835";
+    ctx.fillRect(-42, 28, 84, 25);
+
+    ctx.restore();
+  }
+
+  // --- DEVICE DRAWING: SHARP, INFORMATIVE & ANIMATED ---
+  function drawDevice(d, idx) {
+    ctx.save();
+    ctx.translate(d.x, d.y);
+
+    const isHovered = (hovered === idx);
+    const isSelected = (selected === idx);
+    const isDone = d.done;
+    const isActive = d.state === "aktif";
+
+    // Glow highlight on hover or select
+    if (isSelected || isHovered) {
+      ctx.shadowColor = isSelected ? "#facc15" : "#34d399";
+      ctx.shadowBlur = isSelected ? 22 : 14;
+    }
+
+    // 1. LAMP
+    if (d.type === "lamp") {
+      ctx.strokeStyle = "#475569";
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.moveTo(0, -75);
+      ctx.lineTo(0, -20);
+      ctx.stroke();
+
+      // Lampshade
+      rounded(-24, -20, 48, 22, 6, isDone ? "#64748b" : "#fef08a", "#334155", 1.5);
+
+      // Bulb
+      ctx.fillStyle = isDone ? "#94a3b8" : "#ffffff";
+      ctx.beginPath();
+      ctx.arc(0, 6, 14, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Light Cone (Only when NOT done)
+      if (!isDone) {
+        ctx.fillStyle = "rgba(254, 240, 138, 0.18)";
+        ctx.beginPath();
+        ctx.moveTo(-16, 12);
+        ctx.lineTo(-75, 125);
+        ctx.lineTo(75, 125);
+        ctx.lineTo(16, 12);
+        ctx.closePath();
+        ctx.fill();
+      }
+    }
+
+    // 2. PC & MONITOR
+    if (d.type === "pc") {
+      // Monitor bezel
+      rounded(-48, -38, 96, 68, 8, "#1e293b", "#0f172a", 2);
+      // Screen
+      if (isDone) {
+        // Screen off
+        rounded(-42, -32, 84, 54, 4, "#0b131a");
+      } else {
+        // Screen on (IDE / Browser code)
+        rounded(-42, -32, 84, 54, 4, "#047857");
+        ctx.fillStyle = "#6ee7b7";
+        for (let j = 0; j < 3; j++) {
+          ctx.fillRect(-34, -22 + j * 12, 55 - j * 10, 4);
+        }
+      }
+      // Monitor stand
+      ctx.fillStyle = "#475569";
+      ctx.fillRect(-8, 30, 16, 12);
+      rounded(-26, 42, 52, 6, 3, "#334155");
+    }
+
+    // 3. SERVER RACK
+    if (d.type === "server") {
+      rounded(-52, -75, 104, 145, 8, "#091319", "#00ffcc", 2);
+      // Server shelves
+      for (let s = 0; s < 4; s++) {
+        const sy = -65 + s * 32;
+        rounded(-46, sy, 92, 26, 4, "#132733", "#1e3f52", 1);
+        // Blinking LEDs
+        const blink1 = Math.sin(performance.now() / 200 + s) > 0;
+        const blink2 = Math.cos(performance.now() / 150 + s) > 0;
+        ctx.fillStyle = blink1 ? "#22c55e" : "#14532d";
+        ctx.beginPath();
+        ctx.arc(-34, sy + 13, 3, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = blink2 ? "#f59e0b" : "#78350f";
+        ctx.beginPath();
+        ctx.arc(-22, sy + 13, 3, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = "#64748b";
+        ctx.fillRect(-10, sy + 11, 48, 4);
+      }
+    }
+
+    // 4. PROJECTOR
+    if (d.type === "projector") {
+      rounded(-42, -18, 84, 38, 8, "#e2e8f0", "#94a3b8", 1.5);
+      // Projector lens
+      ctx.fillStyle = "#0f172a";
+      ctx.beginPath();
+      ctx.arc(24, 0, 12, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = isDone ? "#334155" : "#38bdf8";
+      ctx.beginPath();
+      ctx.arc(24, 0, 7, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Power LED
+      ctx.fillStyle = isDone ? "#22c55e" : "#ef4444";
+      ctx.beginPath();
+      ctx.arc(-26, -4, 3.5, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Glowing beam if on
+      if (!isDone) {
+        ctx.fillStyle = "rgba(56, 189, 248, 0.15)";
+        ctx.beginPath();
+        ctx.moveTo(34, 0);
+        ctx.lineTo(120, -40);
+        ctx.lineTo(120, 40);
+        ctx.closePath();
+        ctx.fill();
+      }
+    }
+
+    // 5. AIR CONDITIONER (AC)
+    if (d.type === "ac") {
+      rounded(-68, -28, 136, 56, 10, "#f8fafc", "#94a3b8", 2);
+      // Vent slat
+      rounded(-54, 12, 108, 10, 3, "#cbd5e1");
+      // Digital Display
+      rounded(24, -18, 34, 20, 4, "#0f172a");
+      ctx.fillStyle = d.temp < 24 ? "#f87171" : "#34d399";
+      ctx.font = "800 12px 'Roboto Mono', monospace";
+      ctx.fillText(d.temp + "°", 30, -3);
+
+      // Cool breeze animation if active
+      if (!isDone && d.state === "boros") {
+        ctx.strokeStyle = "rgba(56, 189, 248, 0.4)";
+        ctx.lineWidth = 2;
+        const wave = Math.sin(performance.now() / 200) * 8;
+        ctx.beginPath();
+        ctx.moveTo(-35, 24);
+        ctx.quadraticCurveTo(-15 + wave, 48, -5, 68);
+        ctx.moveTo(15, 24);
+        ctx.quadraticCurveTo(35 + wave, 48, 45, 68);
+        ctx.stroke();
+      }
+    }
+
+    // 6. WINDOW
+    if (d.type === "window") {
+      rounded(-48, -65, 96, 130, 6, "#6b4f38", "#3f2d1e", 2);
+      rounded(-40, -57, 80, 114, 4, isDone ? "#93c5fd" : "#bfdbfe");
+      // Panes
+      ctx.fillStyle = "#6b4f38";
+      ctx.fillRect(-4, -57, 8, 114);
+      ctx.fillRect(-40, 0, 80, 8);
+
+      // Breeze arrows if open
+      if (!isDone) {
+        ctx.strokeStyle = "#ffffff";
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.moveTo(-28, -30);
+        ctx.lineTo(-8, -10);
+        ctx.lineTo(-28, 10);
+        ctx.stroke();
+      }
+    }
+
+    // 7. CEILING FAN
+    if (d.type === "fan") {
+      // Fan base
+      ctx.fillStyle = "#64748b";
+      ctx.beginPath();
+      ctx.arc(0, 0, 14, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Spinning blades
+      ctx.save();
+      if (!isDone) {
+        ctx.rotate(performance.now() / 150);
+      }
+      for (let b = 0; b < 3; b++) {
+        ctx.rotate((Math.PI * 2) / 3);
+        rounded(8, -8, 36, 16, 6, "#94a3b8", "#475569", 1);
+      }
+      ctx.restore();
+
+      ctx.fillStyle = "#0f172a";
+      ctx.beginPath();
+      ctx.arc(0, 0, 6, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // 8. CHARGER
+    if (d.type === "charger") {
+      // Wall socket plate
+      rounded(-24, -30, 48, 55, 6, "#f1f5f9", "#cbd5e1", 1.5);
+      ctx.fillStyle = "#334155";
+      ctx.beginPath();
+      ctx.arc(-8, -14, 3, 0, Math.PI * 2);
+      ctx.arc(8, -14, 3, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Adapter brick
+      if (!isDone) {
+        rounded(-15, -22, 30, 36, 6, "#0f172a", "#334155", 1.5);
+        // Dangling cable
+        ctx.strokeStyle = "#0f172a";
+        ctx.lineWidth = 3.5;
+        ctx.beginPath();
+        ctx.moveTo(0, 14);
+        ctx.bezierCurveTo(24, 38, -12, 54, 8, 72);
+        ctx.stroke();
+      }
+    }
+
+    // 9. DISPENSER
+    if (d.type === "dispenser") {
+      rounded(-30, -60, 60, 120, 8, "#f8fafc", "#94a3b8", 2);
+      // Water bottle top
+      rounded(-20, -50, 40, 38, 5, "#38bdf8");
+      // Taps area
+      ctx.fillStyle = "#ef4444";
+      ctx.fillRect(-14, 0, 10, 8);
+      ctx.fillStyle = "#3b82f6";
+      ctx.fillRect(4, 0, 10, 8);
+      // ECO badge
+      rounded(-18, 22, 36, 16, 4, isDone ? "#10b981" : "#d97706");
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "800 9px sans-serif";
+      ctx.fillText(isDone ? "ECO" : "HOT", -11, 34);
+    }
+
+    // 10. FRIDGE
+    if (d.type === "fridge") {
+      rounded(-36, -65, 72, 130, 8, "#f1f5f9", "#94a3b8", 2);
+      // Freezer divider
+      ctx.strokeStyle = "#cbd5e1";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(-36, -10);
+      ctx.lineTo(36, -10);
+      ctx.stroke();
+      // Handles
+      ctx.fillStyle = "#64748b";
+      ctx.fillRect(24, -42, 5, 24);
+      ctx.fillRect(24, 8, 5, 26);
+      ctx.font = "18px sans-serif";
+      ctx.fillText("❄️", -10, -25);
+    }
+
+    // 11. SPEAKER
+    if (d.type === "speaker") {
+      rounded(-36, -45, 72, 90, 8, "#0f172a", "#334155", 2);
+      // Woofer
+      ctx.fillStyle = "#475569";
+      ctx.beginPath();
+      ctx.arc(0, 8, 22, 0, Math.PI * 2);
+      ctx.fill();
+      // Tweeter
+      ctx.fillStyle = "#64748b";
+      ctx.beginPath();
+      ctx.arc(0, -22, 11, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    ctx.shadowBlur = 0;
+
+    // --- STATUS BADGE OVER OBJECT ---
+    const badgeBg = isDone ? "#10b981" : isActive ? "#38bdf8" : "#f59e0b";
+    const badgeText = isDone ? "AMAN" : isActive ? "PENTING" : "BOROS";
+    rounded(-34, 55, 68, 20, 99, badgeBg);
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "800 10px 'Google Sans', sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText(badgeText, 0, 69);
+    ctx.textAlign = "left";
+
+    // --- HOVER / SELECTION RETICLE ---
+    if (isSelected || isHovered) {
+      ctx.strokeStyle = isSelected ? "#facc15" : "#34d399";
+      ctx.lineWidth = 2.5;
+      ctx.setLineDash([6, 5]);
+      ctx.beginPath();
+      ctx.ellipse(0, 0, 64, 84, 0, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    ctx.restore();
+  }
+
+  // --- MAIN DRAW ROUTINE ---
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    drawRoomBackground();
+
+    // Standard school desks on floor
+    for (let x = 85; x < 900; x += 190) {
+      drawDesk(x, 415, 0.82);
+    }
+
+    // Draw all interactive devices
+    devices.forEach((d, idx) => drawDevice(d, idx));
+
+    // Floating text particle effects
+    floatingTexts.forEach(ft => {
+      ctx.save();
+      ctx.globalAlpha = Math.max(0, ft.alpha);
+      ctx.fillStyle = ft.color;
+      ctx.font = "800 14px 'Google Sans', sans-serif";
+      ctx.fillText(ft.text, ft.x - 24, ft.y);
+      ctx.restore();
+    });
+
+    // Bottom Info Bar inside canvas
+    ctx.fillStyle = "#0c231c";
+    ctx.fillRect(0, 514, W, 26);
+    ctx.fillStyle = "#34d399";
+    ctx.font = "700 11px 'Google Sans', sans-serif";
+    ctx.fillText("🌿 SPARKSAVE GREEN CAMPUS UNIT  •  INVESTIGASI EFISIENSI ENERGI SEKOLAH", 20, 531);
+  }
+
+  // --- HIT DETECTION & INTERACTION ---
+  function hitTest(x, y) {
+    for (let i = devices.length - 1; i >= 0; i--) {
+      const d = devices[i];
+      if (Math.abs(x - d.x) < 70 && Math.abs(y - d.y) < 85) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  function getCanvasCoords(e) {
+    const r = canvas.getBoundingClientRect();
+    const x = (e.clientX - r.left) * (W / r.width);
+    const y = (e.clientY - r.top) * (H / r.height);
+    return { x, y };
+  }
+
+  canvas.addEventListener("pointerdown", e => {
+    if (!playing || paused) return;
+    const { x, y } = getCanvasCoords(e);
+    const idx = hitTest(x, y);
+    if (idx >= 0) {
+      inspect(idx);
+    }
+  });
+
+  canvas.addEventListener("pointermove", e => {
+    if (!playing || paused) return;
+    const { x, y } = getCanvasCoords(e);
+    const idx = hitTest(x, y);
+    if (idx !== hovered) {
+      hovered = idx;
+      canvas.style.cursor = hovered >= 0 ? "pointer" : "crosshair";
+      draw();
+    }
+  });
+
+  canvas.addEventListener("pointerleave", () => {
+    if (hovered !== -1) {
+      hovered = -1;
+      draw();
+    }
+  });
+
+  // --- START SCREEN ---
+  function showStartScreen() {
+    $("overlay").classList.remove("hide");
+    $("modalContent").innerHTML = `
+      <div class="modal-icon">🕵️‍♂️💡</div>
+      <h2>Eco Detective: Operation Green Campus</h2>
+      <p>
+        Beban listrik di sekolah meningkat tajam akibat kebiasaan perangkat standby dan pengaturan pendingin yang berlebihan. 
+        Sebagai <b>Detektif Energi SparkSave</b>, tugasmu adalah mengaudit 8 area sekolah dan menghentikan pemborosan sebelum batas anggaran kritis!
+      </p>
+
+      <div class="modal-stats-grid">
+        <div class="modal-stat-item">
+          <span>Total Lokasi Audit</span>
+          <b>08 Area Sekolah</b>
+        </div>
+        <div class="modal-stat-item">
+          <span>Batas Waktu</span>
+          <b>45–65 Detik/Area</b>
+        </div>
+        <div class="modal-stat-item">
+          <span>Dampak Riil</span>
+          <b>Simulasi Tarif PLN</b>
+        </div>
+        <div class="modal-stat-item">
+          <span>Sistem Penilaian</span>
+          <b>Combo & S-Rank</b>
+        </div>
+      </div>
+
+      <div class="modal-fact" style="text-align:left;">
+        <b style="display:block; margin-bottom:4px;"><i class="bi bi-shield-check"></i> Panduan Detektif:</b>
+        1. Klik perangkat di ruangan untuk membaca kondisi dan konsumsi Watt-nya.<br>
+        2. Pilih tindakan hemat yang tepat (matikan, cabut colokan, atur suhu 24°C, atau mode ECO).<br>
+        3. <b>PERINGATAN:</b> Jangan asal mematikan perangkat krusial seperti server sekolah, kulkas obat UKS, atau komputer yang sedang dipakai praktik!
+      </div>
+
+      <div class="modal-buttons">
+        <button class="btn-act" id="startGameBtn" style="padding:14px;">
+          <i class="bi bi-play-circle-fill fs-5"></i>
+          <span>MULAI INVESTIGASI ENERGI</span>
+        </button>
+        <a href="../../index.html" class="btn-act secondary" style="text-decoration:none;">
+          <i class="bi bi-house-door-fill"></i> Kembali ke Beranda
+        </a>
+      </div>
+    `;
+
+    $("startGameBtn").onclick = () => {
+      audio.click();
+      startCampaign();
+    };
+  }
+
+  showStartScreen();
+})();
+</script>
+</body>
+</html>
