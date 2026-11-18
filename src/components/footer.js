@@ -31,6 +31,7 @@
           <ul class="list-unstyled">
             <li class="mb-2"><a href="${pagePrefix}Eco_Detective_Operation_Green_Campus_v3.html">Eco Detective Game</a></li>
             <li class="mb-2"><a href="${pagePrefix}data.html">Data & Fakta Riset</a></li>
+            <li class="mb-2"><a href="${pagePrefix}to_do.html">Jurnal 7 Hari</a></li>
           </ul>
         </div>
 

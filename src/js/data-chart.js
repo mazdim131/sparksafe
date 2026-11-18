@@ -1,4 +1,3 @@
-// Data & Fakta - Chart rendering (Fase 2) - data asli kuesioner
 (function () {
   "use strict";
 
@@ -9,14 +8,14 @@
     muted: "#64748b",
     danger: "#ef4444",
     info: "#3b82f6",
-    purple: "#8b5cf6"
+    purple: "#8b5cf6",
   };
 
   const KATEGORI_COLORS = {
     "Sangat Baik": PALETTE.primary,
-    "Baik": PALETTE.secondary,
-    "Cukup": PALETTE.accent,
-    "Kurang": PALETTE.danger
+    Baik: PALETTE.secondary,
+    Cukup: PALETTE.accent,
+    Kurang: PALETTE.danger,
   };
 
   function setStatus(msg, isError) {
@@ -35,7 +34,10 @@
       return json;
     } catch (err) {
       if (typeof DATA_ENERGI !== "undefined" && DATA_ENERGI) {
-        setStatus("Data dimuat dari cadangan (buka via Live Server untuk data terbaru).", false);
+        setStatus(
+          "Data dimuat dari cadangan (buka via Live Server untuk data terbaru).",
+          false,
+        );
         return DATA_ENERGI;
       }
       setStatus("Gagal memuat data. Buka halaman via Live Server.", true);
@@ -46,7 +48,10 @@
   function renderKPI(data) {
     const r = data.ringkasan;
     const meta = data.meta;
-    const el = (id, val) => { const e = document.getElementById(id); if (e) e.textContent = val; };
+    const el = (id, val) => {
+      const e = document.getElementById(id);
+      if (e) e.textContent = val;
+    };
     el("kpi-responden", (meta.jumlah_responden || 0).toLocaleString("id-ID"));
     el("kpi-skor", (r.rata_rata_skor || 0).toFixed(2) + " / 4,00");
     el("kpi-sering", (r.persen_sering_rata_rata || 0).toFixed(2) + "%");
@@ -62,7 +67,7 @@
       };
       setStat("stat-val-sangatbaik", r.kategori_persen["Sangat Baik"] || 0, r.kategori["Sangat Baik"] || 0);
       setStat("stat-val-baik", r.kategori_persen["Baik"] || 0, r.kategori["Baik"] || 0);
-      setStat("stat-val-cukup", r.kategori_persen["Cukup"] || 0, r.kategori["Cukup"] || 0);
+      setStat("stat-val-cukup", r.kategori_persen["C   ukup"] || 0, r.kategori["Cukup"] || 0);
       setStat("stat-val-kurang", r.kategori_persen["Kurang"] || 0, r.kategori["Kurang"] || 0);
     }
   }
@@ -80,42 +85,55 @@
       type: "doughnut",
       data: {
         labels: labels,
-        datasets: [{
-          data: values,
-          backgroundColor: labels.map((l) => KATEGORI_COLORS[l] || PALETTE.muted),
-          borderWidth: 3,
-          borderColor: "#ffffff",
-          hoverOffset: 6
-        }]
+        datasets: [
+          {
+            data: values,
+            backgroundColor: labels.map(
+              (l) => KATEGORI_COLORS[l] || PALETTE.muted,
+            ),
+            borderWidth: 2,
+            borderColor: "#ffffff",
+          },
+        ],
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-          legend: { 
-            position: "bottom", 
-            labels: { 
-              boxWidth: 14, 
-              padding: 14, 
-              font: { size: 12, family: "'Google Sans', sans-serif" } 
-            } 
+          legend: {
+            position: "bottom",
+            labels: { boxWidth: 14, padding: 12, font: { size: 11 } },
           },
           tooltip: {
             callbacks: {
-              label: (c) => c.label + ": " + c.parsed + " siswa (" + (r.kategori_persen[c.label] || 0).toFixed(1) + "%)"
-            }
-          }
+              label: (c) =>
+                c.label +
+                ": " +
+                c.parsed +
+                " siswa (" +
+                (r.kategori_persen[c.label] || 0).toFixed(1) +
+                "%)",
+            },
+          },
         },
-        cutout: "62%"
-      }
+        cutout: "60%",
+      },
     });
   }
 
   function makeButirChart(data) {
-    const items = (data.per_butir || []).slice().sort((a, b) => b.rata_rata - a.rata_rata);
-    const labels = items.map((i) => i.kode + " - " + i.label);
+    const items = (data.per_butir || [])
+      .slice()
+      .sort((a, b) => b.rata_rata - a.rata_rata);
+    const labels = items.map((i) => i.kode + " " + i.label);
     const values = items.map((i) => i.rata_rata);
-    const colors = items.map((i) => i.rata_rata >= 3.4 ? PALETTE.primary : (i.rata_rata >= 3.25 ? PALETTE.secondary : PALETTE.accent));
+    const colors = items.map((i) =>
+      i.rata_rata >= 3.4
+        ? PALETTE.primary
+        : i.rata_rata >= 3.25
+          ? PALETTE.secondary
+          : PALETTE.accent,
+    );
     const ctx = document.getElementById("chart-butir");
     if (!ctx) return;
     if (chartButir) chartButir.destroy();
@@ -123,14 +141,15 @@
       type: "bar",
       data: {
         labels: labels,
-        datasets: [{
-          label: "Rata-rata skor",
-          data: values,
-          backgroundColor: colors,
-          borderRadius: 6,
-          borderSkipped: false,
-          maxBarThickness: 22
-        }]
+        datasets: [
+          {
+            label: "Rata-rata",
+            data: values,
+            backgroundColor: colors,
+            borderRadius: 6,
+            borderSkipped: false,
+          },
+        ],
       },
       options: {
         indexAxis: "y",
@@ -138,27 +157,22 @@
         maintainAspectRatio: false,
         plugins: {
           legend: { display: false },
-          tooltip: { callbacks: { label: (c) => "Rata-rata: " + c.parsed.x.toFixed(2) + " / 4,00" } }
+          tooltip: {
+            callbacks: { label: (c) => "Rata-rata: " + c.parsed.x.toFixed(2) },
+          },
         },
         scales: {
-          x: { 
-            min: 3.0, 
-            max: 3.6, 
-            ticks: { stepSize: 0.1, font: { family: "'Google Sans', sans-serif" } },
-            grid: { color: "rgba(0, 0, 0, 0.05)" }
-          },
-          y: {
-            ticks: { font: { size: 11, family: "'Google Sans', sans-serif" } },
-            grid: { display: false }
-          }
-        }
-      }
+          x: { min: 3.0, max: 3.6, ticks: { stepSize: 0.1 } },
+        },
+      },
     });
   }
 
   function makeJurusanChart(data) {
-    const items = (data.per_jurusan || []).slice().sort((a, b) => b.rata_rata_skor - a.rata_rata_skor);
-    const labels = items.map((i) => i.kode + " (" + i.nama + ")");
+    const items = (data.per_jurusan || [])
+      .slice()
+      .sort((a, b) => b.rata_rata_skor - a.rata_rata_skor);
+    const labels = items.map((i) => i.kode);
     const values = items.map((i) => i.rata_rata_skor);
     const ctx = document.getElementById("chart-jurusan");
     if (!ctx) return;
@@ -167,14 +181,15 @@
       type: "bar",
       data: {
         labels: labels,
-        datasets: [{
-          label: "Rata-rata skor",
-          data: values,
-          backgroundColor: PALETTE.primary,
-          borderRadius: 8,
-          borderSkipped: false,
-          maxBarThickness: 56
-        }]
+        datasets: [
+          {
+            label: "Rata-rata skor",
+            data: values,
+            backgroundColor: PALETTE.primary,
+            borderRadius: 8,
+            borderSkipped: false,
+          },
+        ],
       },
       options: {
         responsive: true,
@@ -185,24 +200,22 @@
             callbacks: {
               label: (c) => {
                 const it = items[c.dataIndex];
-                return "Skor: " + c.parsed.y.toFixed(2) + " (" + it.jumlah_responden + " siswa)";
-              }
-            }
-          }
+                return (
+                  it.nama +
+                  ": " +
+                  c.parsed.y.toFixed(2) +
+                  " (" +
+                  it.jumlah_responden +
+                  " siswa)"
+                );
+              },
+            },
+          },
         },
         scales: {
-          y: { 
-            min: 2.8, 
-            max: 3.7, 
-            ticks: { stepSize: 0.1, font: { family: "'Google Sans', sans-serif" } },
-            grid: { color: "rgba(0, 0, 0, 0.05)" }
-          },
-          x: {
-            ticks: { font: { size: 12, family: "'Google Sans', sans-serif" } },
-            grid: { display: false }
-          }
-        }
-      }
+          y: { min: 2.8, max: 3.7, ticks: { stepSize: 0.1 } },
+        },
+      },
     });
   }
 
@@ -213,11 +226,15 @@
     if (!data) return;
     let items = [];
     if (mode === "rombel") {
-      items = (data.per_rombel || []).slice().sort((a, b) => b.rata_rata_skor - a.rata_rata_skor);
+      items = (data.per_rombel || [])
+        .slice()
+        .sort((a, b) => b.rata_rata_skor - a.rata_rata_skor);
     } else {
-      items = (data.per_rayon || []).slice().sort((a, b) => b.rata_rata_skor - a.rata_rata_skor);
+      items = (data.per_rayon || [])
+        .slice()
+        .sort((a, b) => b.rata_rata_skor - a.rata_rata_skor);
     }
-    const labels = items.map((i) => mode === "rombel" ? i.rombel : i.rayon);
+    const labels = items.map((i) => (mode === "rombel" ? i.rombel : i.rayon));
     const values = items.map((i) => i.rata_rata_skor);
     const ctx = document.getElementById("chart-filter");
     if (!ctx) return;
@@ -226,46 +243,30 @@
       type: "bar",
       data: {
         labels: labels,
-        datasets: [{
-          label: "Rata-rata skor",
-          data: values,
-          backgroundColor: mode === "rombel" ? PALETTE.secondary : PALETTE.primary,
-          borderRadius: 6,
-          borderSkipped: false,
-          maxBarThickness: mode === "rombel" ? 42 : 54
-        }]
+        datasets: [
+          {
+            label: "Rata-rata skor",
+            data: values,
+            backgroundColor: PALETTE.secondary,
+            borderRadius: 6,
+            borderSkipped: false,
+          },
+        ],
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
           legend: { display: false },
-          tooltip: { 
-            callbacks: { 
-              label: (c) => {
-                const it = items[c.dataIndex];
-                return "Rata-rata skor: " + c.parsed.y.toFixed(2) + (it.jumlah_responden ? " (" + it.jumlah_responden + " siswa)" : "");
-              }
-            } 
-          }
+          tooltip: { callbacks: { label: (c) => c.parsed.y.toFixed(2) } },
         },
         scales: {
-          y: { 
-            min: 2.8, 
-            max: 3.7, 
-            ticks: { stepSize: 0.1, font: { family: "'Google Sans', sans-serif" } },
-            grid: { color: "rgba(0, 0, 0, 0.05)" }
+          y: { min: 2.8, max: 3.7, ticks: { stepSize: 0.1 } },
+          x: {
+            ticks: { font: { size: 10 }, maxRotation: 60, minRotation: 45 },
           },
-          x: { 
-            ticks: { 
-              font: { size: mode === "rombel" ? 11 : 12, family: "'Google Sans', sans-serif" }, 
-              maxRotation: 45, 
-              minRotation: mode === "rombel" ? 35 : 0 
-            },
-            grid: { display: false }
-          }
-        }
-      }
+        },
+      },
     });
   }
 

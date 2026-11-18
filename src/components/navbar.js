@@ -25,6 +25,7 @@
         <li><a href="${pagePrefix}Eco_Detective_Operation_Green_Campus_v3.html" class="nav-link" data-nav="solution">Solusi & Aksi</a></li>
         <li><a href="${pagePrefix}data.html" class="nav-link" data-nav="data">Data & Fakta</a></li>
         <li><a href="${pagePrefix}about.html" class="nav-link" data-nav="about">Tentang</a></li>
+        <li><a href="${pagePrefix}to_do.html" class="nav-link" data-nav="todo">Zona Evaluasi Diri</a></li>
       </ul>
       <div class="d-flex align-items-center">
         <a href="${rootPrefix}index.html#solusi" class="btn-join">
@@ -41,6 +42,7 @@
   let key = "home";
   if (path.endsWith("data.html")) key = "data";
   else if (path.endsWith("about.html")) key = "about";
+  else if (path.endsWith("to_do.html")) key = "todo";
   else if (path.includes("eco_detective")) key = "solution";
 
   const links = document.querySelectorAll(".nav-link[data-nav]");
