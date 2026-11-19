@@ -672,6 +672,61 @@
       font-size: 0.92rem;
     }
 
+    /* PLAYER NAME FIELD */
+    .name-field {
+      display: block;
+      text-align: left;
+      margin: 14px 0 4px;
+    }
+
+    .name-field > span {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: 7px;
+    }
+
+    .name-field input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      background: rgba(0, 0, 0, 0.35);
+      color: #ffffff;
+      font-family: var(--font-body, inherit);
+      font-size: 0.95rem;
+      font-weight: 600;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .name-field input::placeholder {
+      color: rgba(203, 213, 225, 0.5);
+      font-weight: 400;
+    }
+
+    .name-field input:focus {
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18);
+    }
+
+    .name-field input.invalid {
+      border-color: #f87171;
+      box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15);
+    }
+
+    .name-error {
+      display: block;
+      min-height: 15px;
+      margin-top: 5px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #fca5a5;
+    }
+
     /* TOAST FLOATER */
     .toast-pill {
       position: absolute;
@@ -1143,6 +1198,7 @@
   let toastTimer = 0;
   let remaining = 0;
   let totalSavedWattHours = 0;
+  let playerName = "";
   let devices = [];
   let floatingTexts = [];
 
@@ -1595,6 +1651,28 @@
     const totalRp = Math.round((totalSavedWattHours / 1000) * TARIF_PLN_KWH).toLocaleString("id-ID");
     const totalCo2 = ((totalSavedWattHours / 1000) * CO2_FACTOR_KWH).toFixed(1);
 
+    // Sertifikat hanya diberikan kepada pemenang.
+    if (won) {
+      const now = new Date();
+      sessionStorage.setItem("sparksave_cert_data", JSON.stringify({
+        name: playerName || "Detektif SparkSave",
+        rank,
+        score,
+        kwh: totalKwh,
+        rp: totalRp,
+        co2: totalCo2,
+        date: now.toISOString(),
+        no: `SS-${now.getFullYear()}-${String(Date.now()).slice(-5)}`
+      }));
+    }
+
+    const certificateButton = won
+      ? `<button class="btn-act" id="certificateBtn" style="background:linear-gradient(135deg,#047857,#10b981);">
+           <i class="bi bi-award-fill fs-5"></i>
+           <span>Lihat &amp; Unduh Sertifikat</span>
+         </button>`
+      : "";
+
     $("modalContent").innerHTML = `
       <div class="modal-icon">${won ? "🏆🌟" : "⚠️🌱"}</div>
       <h2>${won ? "Kampus Lebih Hijau & Efisien!" : "Investigasi Terhenti"}</h2>
@@ -1629,6 +1707,7 @@
       </div>
 
       <div class="modal-buttons">
+        ${certificateButton}
         <button class="btn-act" id="restartGameBtn">
           <i class="bi bi-arrow-repeat fs-5"></i> Mainkan Ulang Kampanye
         </button>
@@ -1641,6 +1720,13 @@
       </div>
     `;
 
+    if (won) {
+      $("certificateBtn").onclick = () => {
+        audio.click();
+        window.open("sertifikat.html", "_blank");
+      };
+    }
+
     $("restartGameBtn").onclick = () => {
       audio.click();
       startCampaign();
@@ -1651,6 +1737,7 @@
   function startCampaign() {
     level = 0;
     score = 0;
+    sessionStorage.removeItem("sparksave_cert_data");
     energy = 100;
     budget = 100;
     errors = 0;
@@ -2371,6 +2458,13 @@
         3. <b>PERINGATAN:</b> Jangan asal mematikan perangkat krusial seperti server sekolah, kulkas obat UKS, atau komputer yang sedang dipakai praktik!
       </div>
 
+      <label class="name-field" for="playerNameInput">
+        <span><i class="bi bi-person-badge"></i> Nama Detektif (untuk sertifikat)</span>
+        <input type="text" id="playerNameInput" maxlength="30" autocomplete="name"
+               placeholder="Masukkan nama lengkap kamu">
+        <small class="name-error" id="nameError"></small>
+      </label>
+
       <div class="modal-buttons">
         <button class="btn-act" id="startGameBtn" style="padding:14px;">
           <i class="bi bi-play-circle-fill fs-5"></i>
@@ -2382,9 +2476,28 @@
       </div>
     `;
 
-    $("startGameBtn").onclick = () => {
+    const nameInput = $("playerNameInput");
+    nameInput.value = sessionStorage.getItem("sparksave_player_name") || "";
+
+    const submitName = () => {
+      const cleaned = nameInput.value.replace(/\s+/g, " ").trim();
+      if (!cleaned) {
+        nameInput.classList.add("invalid");
+        $("nameError").textContent = "Nama wajib diisi supaya bisa dicetak di sertifikat.";
+        nameInput.focus();
+        return;
+      }
+      nameInput.classList.remove("invalid");
+      $("nameError").textContent = "";
+      playerName = cleaned;
+      sessionStorage.setItem("sparksave_player_name", cleaned);
       audio.click();
       startCampaign();
+    };
+
+    $("startGameBtn").onclick = submitName;
+    nameInput.onkeydown = (e) => {
+      if (e.key === "Enter") submitName();
     };
   }
 

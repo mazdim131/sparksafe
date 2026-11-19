@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sertifikat | SparkSave</title>
+    <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="../style/sertifikat.css">
+</head>
+
+<body>
+    <header class="cert-header">
+        <a href="Eco_Detective_Operation_Green_Campus_v3.html" class="back-link">
+            <i class="bi bi-arrow-left"></i>
+            <span>Kembali ke Game</span>
+        </a>
+        <div class="brand">
+            <i class="bi bi-patch-check-fill"></i>
+            <span>SparkSave <b>Certificate</b></span>
+        </div>
+    </header>
+
+    <main class="cert-main">
+        <div class="cert-intro">
+            <span class="cert-tag"><i class="bi bi-trophy-fill"></i> Misi Selesai</span>
+            <h1>Sertifikat Detektif Energi</h1>
+            <p id="certWelcome">Menyiapkan sertifikat kamu…</p>
+        </div>
+
+        <div id="certState" class="cert-state">
+            <div class="spinner"></div>
+            <span>Merender template sertifikat…</span>
+        </div>
+
+        <section id="certPreview" class="cert-preview" hidden>
+            <div class="canvas-wrap">
+                <canvas id="certCanvas" width="1790" height="1056"
+                    aria-label="Pratinjau sertifikat SparkSave"></canvas>
+            </div>
+
+            <div class="cert-actions">
+                <button id="downloadPng" class="cert-btn primary" type="button">
+                    <i class="bi bi-image-fill"></i>
+                    <span>Unduh Sertifikat (PNG)</span>
+                </button>
+                <button id="downloadPdf" class="cert-btn" type="button">
+                    <i class="bi bi-file-earmark-pdf-fill"></i>
+                    <span>Simpan sebagai PDF</span>
+                </button>
+                <a href="Eco_Detective_Operation_Green_Campus_v3.html" class="cert-btn ghost">
+                    <i class="bi bi-arrow-repeat"></i>
+                    <span>Main Lagi</span>
+                </a>
+            </div>
+
+            <p class="cert-note">
+                <i class="bi bi-info-circle"></i>
+                Nama di sertifikat otomatis diisi dari nama yang kamu masukkan sebelum bermain.
+            </p>
+        </section>
+    </main>
+
+    <!-- jsPDF untuk export PDF (PNG tetap bisa dipakai tanpa koneksi) -->
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
+    <script src="../js/sertifikat.js"></script>
+</body>
+
+</html>
