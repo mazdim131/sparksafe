@@ -13,77 +13,25 @@
    * geser nilai x / y sampai teks berada di area yang kamu mau.
    */
   const CONFIG = {
-    template: "../assets/images/template-sertifikat.png",
-    templateWidth: 895,
-    templateHeight: 528,
-    scale: 2,
+    template: "../assets/images/Sertifikat.png",
+    templateWidth: 4750,
+    templateHeight: 3359,
+    scale: 1,
 
     fields: {
       // Nama user menggantikan placeholder [NAMA LENGKAP PENERIMA].
       // Area ini sudah dibersihkan lewat CONFIG.cleanup sebelum teks digambar.
       name: {
-        x: 444,
-        y: 260,
-        size: 44,
-        minSize: 20,
-        maxWidth: 620,
+        x: 2378,
+        y: 1780 ,
+        size: 2500,
+        minSize: 32,
+        maxWidth: 3000,
         weight: 800,
-        color: "#FFD86B",
+        color: "green",
         glow: true
-      },
-      // Menggantikan placeholder [TANTANGAN GAME / TURNAMEN / MISI].
-      rank: {
-        x: 447,
-        y: 331,
-        size: 17,
-        minSize: 11,
-        maxWidth: 700,
-        weight: 700,
-        color: "#FDE68A"
-      },
-      // Baris poin, menggantikan kalimat "dalam Game Interaktif SparkSave."
-      score: {
-        x: 447,
-        y: 351,
-        size: 15,
-        minSize: 10,
-        maxWidth: 700,
-        weight: 500,
-        color: "#FFFFFF"
-      },
-      // Detail hasil + tanggal/nomor, di atas area tanda tangan yang dibersihkan.
-      meta: {
-        x: 447,
-        y: 376,
-        size: 12,
-        minSize: 8,
-        maxWidth: 720,
-        weight: 400,
-        color: "#D1FAE5"
       }
     },
-
-    // Placeholder bawaan gambar yang ditutup SEBELUM teks dinamis dicetak.
-    // Koordinat mengikuti template asli (895 x 528). Logo SparkSave di kiri
-    // (x < 200, y < 200) sengaja tidak termasuk supaya tetap utuh.
-    cleanup: [
-      { x: 250, y: 226, w: 390, h: 44, fallback: "#0C3A27" },
-      { x: 262, y: 317, w: 366, h: 21, fallback: "#10301C" },
-      { x: 300, y: 340, w: 290, h: 20, fallback: "#0D2E20" },
-      { x: 198, y: 388, w: 205, h: 81, fallback: "#0C2A1B" },
-      { x: 502, y: 388, w: 225, h: 81, fallback: "#092619" },
-      // Logo kanan: tutup dengan lingkaran, bukan kotak. Radius 80 menutup
-      // seluruh bingkai emas (batas gold terukur x=690..824, y=59..194)
-      // dengan margin ~10 px, tapi masih aman dari bingkai sertifikat x >= 840.
-      // Warna diambil dari rata-rata latar hijau gelap di sekitar logo.
-      {
-        shape: "circle",
-        cx: 757,
-        cy: 125,
-        r: 80,
-        color: "#093020"
-      }
-    ]
   };
 
   const $ = (id) => document.getElementById(id);
@@ -162,7 +110,6 @@
     if (cfg.glow) ctx.restore();
   }
 
-  /** Ambil warna latar lokal dari template supaya area tutupan menyatu. */
   function sampleBackground(probeCtx, area) {
     try {
       const { data } = probeCtx.getImageData(area.x, area.y, area.w, area.h);
@@ -186,7 +133,6 @@
     }
   }
 
-  /** Tutup placeholder bawaan gambar sebelum mencetak teks dinamis. */
   function clearPlaceholders(ctx, template) {
     const probe = document.createElement("canvas");
     probe.width = template.naturalWidth || template.width;
@@ -195,7 +141,7 @@
     probeCtx.drawImage(template, 0, 0, probe.width, probe.height);
 
     const scale = CONFIG.scale;
-    for (const area of CONFIG.cleanup) {
+    for (const area of (CONFIG.cleanup || [])) {
       if (area.shape === "circle") {
         ctx.beginPath();
         ctx.arc(area.cx * scale, area.cy * scale, area.r * scale, 0, Math.PI * 2);
@@ -245,13 +191,6 @@
 
     const fields = CONFIG.fields;
     drawFitted(ctx, data.name, fields.name);
-    drawFitted(ctx, data.rank || "DETEKTIF ENERGI SPARKSAVE", fields.rank);
-    drawFitted(ctx, `${Number(data.score || 0).toLocaleString("id-ID")} Poin`, fields.score);
-    drawFitted(
-      ctx,
-      `${data.kwh} kWh  ·  Rp ${data.rp}  ·  ${data.co2} kg CO₂  ·  ${formatDate(data.date)}  ·  No. ${data.no}`,
-      fields.meta
-    );
 
     stateBox.hidden = true;
     preview.hidden = false;
